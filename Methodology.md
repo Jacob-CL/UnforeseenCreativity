@@ -1,7 +1,5 @@
 # Web Application Penetration Testing Methodology
 
-This methodology provides a structured approach to **web application penetration testing**, ensuring thorough coverage of attack surfaces. Below are the key phases, along with **recommended tools** for each step.
-
 ---
 
 ## **1. Reconnaissance & Information Gathering**
