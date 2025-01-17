@@ -23,7 +23,7 @@ The `whois` command queries **WHOIS databases** to retrieve information about do
 | Use grep for specifics | `whois google.com \| grep "Name Server"` |
 | Team Cymru malware hash lookup using whois: (Note: Output is timestamp of last seen and detection rate) | `whois -h hash.cymru.com <SUSPICIOUS FILE HASH>` |
 
-## dig commands
+# dig commands
 The `dig` command (Domain Information Groper) is a versatile and powerful utility for querying DNS servers and retrieving various types of DNS records
 | Description | Command |
 |-------------|---------|
