@@ -23,6 +23,7 @@ A directory for every (most) CTF / Cyber Security topics
 | Send POST request with POST data | `curl -X POST -d 'username=admin&password=admin' http://<SERVER_IP>:<PORT>/` |
 | Set request cookies | `curl -b 'PHPSESSID=c1nsa6op7vtk7kdis7bcnbadf1' http://<SERVER_IP>:<PORT>/` |
 | Send POST request with JSON data | `curl -X POST -d '{"search":"london"}' -H 'Content-Type: application/json' http://<SERVER_IP>:<PORT>/search.php` |
+| Monitor of a website or file is still accessible | `while :; do curl -sSr http://<URL> \| head -n 1; sleep 60; done` |
 
 ---
 
@@ -35,6 +36,9 @@ A directory for every (most) CTF / Cyber Security topics
 | Create (add) entry | `curl -X POST http://<SERVER_IP>:<PORT>/api.php/city/ -d '{"city_name":"HTB_City", "country_name":"HTB"}' -H 'Content-Type: application/json'` |
 | Update (modify) entry | `curl -X PUT http://<SERVER_IP>:<PORT>/api.php/city/london -d '{"city_name":"New_HTB_City", "country_name":"HTB"}' -H 'Content-Type: application/json'` |
 | Delete entry | `curl -X DELETE http://<SERVER_IP>:<PORT>/api.php/city/New_HTB_City` |
+| Send a suspicious hash to VirusTotal | `curl -v --request POST --url 'https://www.virustotal.com/vtapi/v2/file/report' -d apikey=<VT API KEY> -d 'resource=<SUSPICIOUS FILE HASH>'` |
+| Send a suspicious file to VirusTotal | `curl -v -F 'file=/<PATH TO FILE>/<SUSPICIOUS FILE NAME>' -F apikey=<VT API KEY> https://www.virustotal.com/vtapi/v2/file/scan` |
+
 
 ---
 
