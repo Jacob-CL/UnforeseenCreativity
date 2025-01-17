@@ -12,7 +12,8 @@ A directory for every (most) Cyber Security / PenTest topics
 | Show Network tab | `[CTRL+SHIFT+E]` |
 | Show Console tab | `[CTRL+SHIFT+K]` |
 
-# Web Requests / cURL / HTTP & HTTPS
+---
+
 # cURL Commands
 | Description | Command |
 |-------------|---------|
@@ -44,5 +45,92 @@ A directory for every (most) Cyber Security / PenTest topics
 | Send a suspicious hash to VirusTotal | `curl -v --request POST --url 'https://www.virustotal.com/vtapi/v2/file/report' -d apikey=<VT API KEY> -d 'resource=<SUSPICIOUS FILE HASH>'` |
 | Send a suspicious file to VirusTotal | `curl -v -F 'file=/<PATH TO FILE>/<SUSPICIOUS FILE NAME>' -F apikey=<VT API KEY> https://www.virustotal.com/vtapi/v2/file/scan` |
 
+
 ---
 
+
+# HTTPie
+
+
+---
+
+
+# Wget Commands
+
+
+---
+
+
+# Netcat (nc) Commands
+
+
+---
+
+
+# Telnet Commands
+
+
+---
+
+
+# FFuf Commands
+
+
+---
+
+
+# Dirb
+
+
+---
+
+
+# Gobuster
+
+
+---
+
+
+# Wappalyzer
+
+
+---
+
+
+# Tcpdump
+
+
+---
+
+
+# Tshark
+
+
+---
+
+
+# SQLmap
+
+
+---
+
+
+# Nikto
+
+
+---
+
+
+# Hydra
+
+
+---
+
+
+# JWT-Tool
+
+
+---
+
+
+#
