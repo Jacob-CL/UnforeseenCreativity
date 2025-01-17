@@ -6,11 +6,12 @@ A directory for every (most) Cyber Security / PenTest topics
  - [HackTheBox Academy](https://academy.hackthebox.com)
 
 <details>
-  <summary>Recon Methodology</summary>
- 
-- Port Scanning, Network Mapping, OS Fingerprinting and Service Enumeration with `Nmap`
-- Vulnerability Scanning with `Nessus`, `OpenVAS` or `Nikto`
-- Banner Grabbing with `Netcat`
+  <summary>**Recon Methodology**</summary>
+
+- Passive:
+  - Port Scanning, Network Mapping, OS Fingerprinting and Service Enumeration with `Nmap`
+  - Vulnerability Scanning with `Nessus`, `OpenVAS` or `Nikto`
+  - Banner Grabbing with `Netcat`
 
 
 </details>
