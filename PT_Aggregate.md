@@ -3,6 +3,7 @@ A directory for every (most) Cyber Security / PenTest topics
  - [HackTricks](https://book.hacktricks.wiki/en/index.html)
  - [HackTricks Cloud](https://cloud.hacktricks.wiki/en/index.html)
  - [OWASP](https://owasp.org/www-project-web-security-testing-guide/v42/)
+ - [HackTheBox Academy](https://academy.hackthebox.com)
 
 ## Browser DevTools Shortcuts
 
