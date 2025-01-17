@@ -6,12 +6,18 @@ A directory for every (most) Cyber Security / PenTest topics
  - [HackTheBox Academy](https://academy.hackthebox.com)
 
 Recon Methodology:
-
-- Passive:
+- Active:
   - Port Scanning, Network Mapping, OS Fingerprinting and Service Enumeration with `Nmap`
   - Vulnerability Scanning with `Nessus`, `OpenVAS` or `Nikto`
   - Banner Grabbing with `Netcat`
   - Web Spidering with `Burp Suite`, `OWASP ZAP Spider`, `Scrapy`
+- Passive:
+  - Search engines `Google Dorking`, `DuckDuckGo`, `Shodan`, `Yandex`, `Baidu`
+  - `WHOIS` Lookups for domain registration details
+  - DNS with `dig`, `nslookup`, `dnsenum` or `dnsrecon`
+  - Web Archive Analysis with `Wayback Machine`
+  - Social Media Analysis with `LinkedIn`, `Twitter/X`, `Facebook`, `Instagram`
+  - Code Repositories with `GitHub` or `GutLab`
 
 
 ## Browser DevTools Shortcuts
