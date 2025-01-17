@@ -7,17 +7,10 @@ A directory for every (most) Cyber Security / PenTest topics
 
 <details>
   <summary>Recon Methodology</summary>
+|   |   |
+|---|---|
+|   |   |
 
-- Nmap
-- Metasploit
-- Burp Suite
-- Nikto
-- SQLmap
-- FFUF
-- Gobuster
-- Dirb
-- Hydra
-- John the Ripper
 
 </details>
 
