@@ -23,7 +23,7 @@ The `whois` command queries **WHOIS databases** to retrieve information about do
 | Use grep for specifics | `whois google.com \| grep "Name Server"` |
 | Team Cymru malware hash lookup using whois: (Note: Output is timestamp of last seen and detection rate) | `whois -h hash.cymru.com <SUSPICIOUS FILE HASH>` |
 
-# [dig](https://linux.die.net/man/1/dig) commands
+<details># [dig](https://linux.die.net/man/1/dig) commands
 The `dig` command (Domain Information Groper) is a versatile and powerful utility for querying DNS servers and retrieving various types of DNS records
 | Description | Command |
 |-------------|---------|
@@ -49,6 +49,7 @@ The `dig` command (Domain Information Groper) is a versatile and powerful utilit
 | Host transfer |`dig @ <ip> <domain> it AXFR`|
 
 **Caution**: Some servers can detect and block excessive DNS queries. Use caution and respect rate limits. Always obtain permission before performing extensive DNS reconnaissance on a target.
+</details>
 
 ---
 
@@ -142,6 +143,18 @@ The `dig` command (Domain Information Groper) is a versatile and powerful utilit
 | Delete API entry | `curl -X DELETE http://<SERVER_IP>:<PORT>/api.php/city/New_HTB_City` |
 | Send a suspicious hash to VirusTotal | `curl -v --request POST --url 'https://www.virustotal.com/vtapi/v2/file/report' -d apikey=<VT API KEY> -d 'resource=<SUSPICIOUS FILE HASH>'` |
 | Send a suspicious file to VirusTotal | `curl -v -F 'file=/<PATH TO FILE>/<SUSPICIOUS FILE NAME>' -F apikey=<VT API KEY> https://www.virustotal.com/vtapi/v2/file/scan` |
+
+---
+
+# [dnsenum](https://github.com/fwaeytens/dnsenum) commands
+Comprehensive DNS enumeration tool that supports dictionary and brute-force attacks for discovering subdomains.
+
+---
+
+# [dnsrecon](https://github.com/darkoperator/dnsrecon) commands
+Versatile tool that combines multiple DNS reconnaissance techniques and offers customisable output formats.
+
+
 
 # HTTPie
 
