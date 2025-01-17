@@ -24,6 +24,7 @@
 More details here: https://curl.haxx.se/docs/sslcerts.html`
 - Skip the certificate check with the `-k` flag
 - HTTP REQUEST =
+
 | Field   | Example   | Description   |
 |---|---|---|
 | Method   | GET   |  	The HTTP method or verb, which specifies the type of action to perform.   |
@@ -35,6 +36,7 @@ More details here: https://curl.haxx.se/docs/sslcerts.html`
 
 ### General Headers
 - General headers are used in both HTTP requests and responses. They are contextual and are used to describe the message rather than its contents.
+
 | Header   | Example   | Description   |
 |---|---|---|
 | Date   | Date: Wed, 16 Feb 2022 10:38:44 GMT   | Holds the date and time at which the message originated. It's preferred to convert the time to the standard UTC time zone.   |
