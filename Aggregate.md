@@ -13,14 +13,10 @@ A directory for every (most) Cyber Security / PenTest topics
 | Show Network tab | `[CTRL+SHIFT+E]` |
 | Show Console tab | `[CTRL+SHIFT+K]` |
 
----
-
 # [cURL](https://curl.se/docs/) Commands
-# [cURL](https://curl.se/docs/)
-
 `cURL` is a command-line tool for transferring data using various protocols (HTTP, HTTPS, FTP, etc.). It is commonly used for making web requests, downloading/uploading files, testing APIs, and automating network tasks.
 
-## **General & Help Flags**
+### **General & Help Flags**
 
 | Description | Command |
 |-------------|---------|
@@ -31,9 +27,7 @@ A directory for every (most) Cyber Security / PenTest topics
 | Displays the full manual page | `curl -M` / `curl --manual` |
 | Shows the version of `curl`, supported protocols, and features | `curl -V` / `curl --version` |
 
----
-
-## **Verbose Output Flags**
+### **Verbose Output Flags**
 
 | Description | Command |
 |-------------|---------|
@@ -41,9 +35,7 @@ A directory for every (most) Cyber Security / PenTest topics
 | Hides progress and error messages | `curl -s https://example.com` / `curl --silent https://example.com` |
 | Hides progress but still shows errors | `curl -sS https://example.com` |
 
----
-
-## **Debugging Headers & Data**
+### **Debugging Headers & Data**
 
 | Description | Command |
 |-------------|---------|
@@ -53,9 +45,8 @@ A directory for every (most) Cyber Security / PenTest topics
 | Logs request/response data in ASCII format | `curl --trace-ascii curl.log https://example.com` |
 | Custom output formatting (e.g., response time) | `curl -w "Response Code: %{http_code}\n" -o /dev/null -s https://example.com` |
 
----
 
-## **HTTP Methods & Request Manipulation**
+### **HTTP Methods & Request Manipulation**
 
 | Description | Command |
 |-------------|---------|
@@ -65,9 +56,7 @@ A directory for every (most) Cyber Security / PenTest topics
 | Sends data via POST request | `curl -X POST -d "username=admin&password=admin" https://example.com/login` |
 | Reads request body from a file | `curl -X POST -H "Content-Type: application/json" -d @data.json https://example.com/api` |
 
----
-
-## **Authentication & Cookies**
+### **Authentication & Cookies**
 
 | Description | Command |
 |-------------|---------|
@@ -76,9 +65,7 @@ A directory for every (most) Cyber Security / PenTest topics
 | Stores cookies from a response | `curl -c cookies.txt https://example.com` |
 | Uses stored cookies for a new request | `curl -b cookies.txt https://example.com` |
 
----
-
-## **Proxy & Evasion Techniques**
+### **Proxy & Evasion Techniques**
 
 | Description | Command |
 |-------------|---------|
@@ -87,9 +74,7 @@ A directory for every (most) Cyber Security / PenTest topics
 | Changes the User-Agent string | `curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" https://example.com` |
 | Spoofs the Referer header | `curl -e "https://google.com" https://example.com` |
 
----
-
-## **Enumeration & Reconnaissance**
+### **Enumeration & Reconnaissance**
 
 | Description | Command |
 |-------------|---------|
@@ -98,9 +83,7 @@ A directory for every (most) Cyber Security / PenTest topics
 | Measures response time | `curl -o /dev/null -s -w "Time: %{time_total}s\n" https://example.com` |
 | Dumps response headers | `curl -I https://example.com` |
 
----
-
-## **File Transfers & Exploitation**
+### **File Transfers & Exploitation**
 
 | Description | Command |
 |-------------|---------|
@@ -109,9 +92,7 @@ A directory for every (most) Cyber Security / PenTest topics
 | Downloads a file from a server | `curl -O https://example.com/file.txt` |
 | Executes command injection through headers | `curl -H "User-Agent: () { :; }; /bin/bash -c 'id'" https://example.com` |
 
----
-
-## **API Interactions & Security Tools**
+### **API Interactions & Security Tools**
 
 | Description | Command |
 |-------------|---------|
@@ -123,95 +104,30 @@ A directory for every (most) Cyber Security / PenTest topics
 | Send a suspicious hash to VirusTotal | `curl -v --request POST --url 'https://www.virustotal.com/vtapi/v2/file/report' -d apikey=<VT API KEY> -d 'resource=<SUSPICIOUS FILE HASH>'` |
 | Send a suspicious file to VirusTotal | `curl -v -F 'file=/<PATH TO FILE>/<SUSPICIOUS FILE NAME>' -F apikey=<VT API KEY> https://www.virustotal.com/vtapi/v2/file/scan` |
 
----
-
-
-
----
-
-
 # HTTPie
-
-
----
-
 
 # Wget Commands
 
-
----
-
-
 # Netcat (nc) Commands
-
-
----
-
 
 # Telnet Commands
 
-
----
-
-
 # FFuf Commands
-
-
----
-
 
 # Dirb
 
-
----
-
-
 # Gobuster
-
-
----
-
 
 # Wappalyzer
 
-
----
-
-
 # Tcpdump
-
-
----
-
 
 # Tshark
 
-
----
-
-
 # SQLmap
-
-
----
-
 
 # Nikto
 
-
----
-
-
 # Hydra
 
-
----
-
-
 # JWT-Tool
-
-
----
-
-
-#
