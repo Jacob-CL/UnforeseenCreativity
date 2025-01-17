@@ -1,4 +1,5 @@
 # [cURL](https://curl.se/docs/)
+`cURL` is a command-line tool for transferring data using various protocols (HTTP, HTTPS, FTP, etc.). It is commonly used for making web requests, downloading/uploading files, testing APIs, and automating network tasks.  
 ## **General & Help Flags**
 -> Shows a short help summary with basic options  
 - `curl -h`  
