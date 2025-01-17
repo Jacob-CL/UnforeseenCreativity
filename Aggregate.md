@@ -6,7 +6,7 @@ A directory for every (most) Cyber Security / PenTest topics
  - [HackTheBox Academy](https://academy.hackthebox.com)
 
 <details>
-  <summary>**Recon Methodology**</summary>
+  <summary>Recon Methodology</summary>
 
 - Passive:
   - Port Scanning, Network Mapping, OS Fingerprinting and Service Enumeration with `Nmap`
