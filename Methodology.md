@@ -14,6 +14,15 @@
 | **Service Enumeration** | Determining the specific versions of services running on open ports. | Using Nmap's service version detection (`-sV`) to determine if a web server is running Apache 2.4.50 or Nginx 1.18.0. | `Nmap` | **Low**: Similar to banner grabbing, service enumeration can be logged but is less likely to trigger alerts. |
 | **Web Spidering** | Crawling the target website to identify web pages, directories, and files. | Running a web crawler like Burp Suite Spider or OWASP ZAP Spider to map out the structure of a website and discover hidden resources. | `Burp Suite Spider`, `OWASP ZAP Spider`, `Scrapy` (customizable) | **Low to Medium**: Can be detected if the crawler's behavior is not carefully configured to mimic legitimate traffic. |
 
+### Passive Reconnaissance
+| Technique | Description | Example | Tools | Risk of Detection |
+|-----------|-------------|---------|-------|------------------|
+| **Search Engine Queries** | Utilizing search engines to uncover information about the target, including websites, social media profiles, and news articles. | Searching Google for `"[Target Name] employees"` to find employee information or social media profiles. | `Google`, `DuckDuckGo`, `Bing`, `Shodan` (specialized) | **Very Low**: Search engine queries are normal internet activity and unlikely to trigger alerts. |
+| **WHOIS Lookups** | Querying WHOIS databases to retrieve domain registration details. | Performing a WHOIS lookup on a target domain to find the registrant's name, contact information, and name servers. | `whois` (CLI), Online WHOIS lookup services | **Very Low**: WHOIS queries are legitimate and do not raise suspicion. |
+| **DNS Analysis** | Analyzing DNS records to identify subdomains, mail servers, and other infrastructure. | Using `dig` to enumerate subdomains of a target domain. | `dig`, `nslookup`, `host`, `dnsenum`, `fierce`, `dnsrecon` | **Very Low**: DNS queries are essential for internet browsing and are not typically flagged as suspicious. |
+| **Web Archive Analysis** | Examining historical snapshots of the target's website to identify changes, vulnerabilities, or hidden information. | Using the Wayback Machine to view past versions of a target website to see how it has changed over time. | `Wayback Machine` | **Very Low**: Accessing archived versions of websites is a normal activity. |
+| **Social Media Analysis** | Gathering information from social media platforms like LinkedIn, Twitter, or Facebook. | Searching LinkedIn for employees of a target organization to learn about their roles, responsibilities, and potential social engineering targets. | `LinkedIn`, `Twitter`, `Facebook`, OSINT tools | **Very Low**: Accessing public social media profiles is not considered intrusive. |
+| **Code Repositories** | Analyzing publicly accessible code repositories like GitHub for exposed credentials or vulnerabilities. | Searching GitHub for code snippets or repositories related to the target that might contain sensitive information or code vulnerabilities. | `GitHub`, `GitLab` | **Very Low**: Code repositories are meant for public access, and searching them is not suspicious. |
 
 ---
 
