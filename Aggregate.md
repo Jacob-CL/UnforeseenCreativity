@@ -5,7 +5,7 @@ A directory for every (most) Cyber Security / PenTest topics
  - [OWASP](https://owasp.org/www-project-web-security-testing-guide/v42/)
  - [HackTheBox Academy](https://academy.hackthebox.com)
 
-Recon Methodology:
+**1. Recon Methodology:**
 - Active:
   - Port Scanning, Network Mapping, OS Fingerprinting and Service Enumeration with `Nmap`
   - Vulnerability Scanning with `Nessus`, `OpenVAS` or `Nikto`
