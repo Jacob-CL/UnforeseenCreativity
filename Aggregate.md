@@ -116,6 +116,19 @@ The `whois` command queries **WHOIS databases** to retrieve information about do
 | Basic WHOIS Lookup | `whois example.com` |
 | Use grep for specifics | `whois google.com \| grep "Name Server"` |
 
+## WHOIS Resources
+| Resource | Organization |
+|----------|-------------|
+| [icann.org](https://www.icann.org/) | ICANN |
+| [iana.com](https://www.iana.org/) | IANA |
+| [nro.net](https://www.nro.net/) | NRO |
+| [afrinic.net](https://www.afrinic.net/) | AFRINIC |
+| [apnic.net](https://www.apnic.net/) | APNIC |
+| [ws.arin.net](https://www.arin.net/) | ARIN |
+| [lacnic.net](https://www.lacnic.net/) | LACNIC |
+| [ripe.net](https://www.ripe.net/) | RIPE |
+| [internic.net](https://www.internic.net/) | InterNIC |
+
 
 
 # HTTPie
