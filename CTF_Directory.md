@@ -5,12 +5,7 @@ A directory for every (most) CTF / Cyber Security topics
  - [OWASP](https://owasp.org/www-project-web-security-testing-guide/v42/)
 
 # Web Requests / cURL / HTTP & HTTPS
-- [HackTricks 80,443 - Pentesting Web Methodology]([url](https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-web/index.html))
-- [HTB Web Requests Module](https://academy.hackthebox.com/module/35/section/219)
-- [cURL](https://curl.se/docs/)
-
-## cURL Commands
-
+# cURL Commands
 | Description | Command |
 |-------------|---------|
 | cURL help menu | `curl -h` |
