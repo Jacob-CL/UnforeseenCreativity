@@ -1,5 +1,5 @@
 # [cURL](https://curl.se/docs/)
-## **General Help Flags**
+## **General & Help Flags**
 -> Shows a short help summary with basic options  
 - `curl -h`  
 - `curl --help`
@@ -13,9 +13,6 @@
 -> Shows help for a specific category (e.g., HTTP-related options)  
 - `curl --help http`
 
----
-
-## **Manual & Version**
 -> Displays the full manual page  
 - `curl -M`  
 - `curl --manual`
@@ -27,7 +24,6 @@
 ---
 
 ## **Verbose Output Flags**
-### **General Verbose Output**
 -> Provides detailed information about the request and response, including headers and connection details  
 - `curl -v https://example.com`  
 - `curl --verbose https://example.com`
@@ -41,7 +37,7 @@
 
 ---
 
-### **Debugging Headers & Data**
+## **Debugging Headers & Data**
 -> Displays the response headers along with the body  
 - `curl -i https://example.com`  
 - `curl --include https://example.com`
