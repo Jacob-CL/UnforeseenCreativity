@@ -5,6 +5,23 @@ A directory for every (most) Cyber Security / PenTest topics
  - [OWASP](https://owasp.org/www-project-web-security-testing-guide/v42/)
  - [HackTheBox Academy](https://academy.hackthebox.com)
 
+<details>
+  <summary>Recon Methodology</summary>
+
+- Nmap
+- Metasploit
+- Burp Suite
+- Nikto
+- SQLmap
+- FFUF
+- Gobuster
+- Dirb
+- Hydra
+- John the Ripper
+
+</details>
+
+
 ## Browser DevTools Shortcuts
 
 | Description | Shortcut |
