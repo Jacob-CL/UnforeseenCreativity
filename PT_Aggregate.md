@@ -14,7 +14,7 @@ A directory for every (most) Cyber Security / PenTest topics
 
 ---
 
-# cURL Commands
+# [cURL](https://curl.se/docs/) Commands
 | Description | Command |
 |-------------|---------|
 | cURL help menu | `curl -h` or `curl --help-all` |
