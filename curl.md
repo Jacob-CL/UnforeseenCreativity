@@ -131,4 +131,56 @@
 - `curl -H "User-Agent: () { :; }; /bin/bash -c 'id'" https://example.com`
 
 ---
+## Examples
+## Examples
+
+-> Get a single resource via URI:  
+- `curl https://jsonplaceholder.typicode.com/posts/1`
+
+-> Get a single resource via URI and show response header:  
+- `curl -i https://jsonplaceholder.typicode.com/posts/1`
+
+-> Show response header only:  
+- `curl -I https://jsonplaceholder.typicode.com/posts/1`  
+- `curl --head https://jsonplaceholder.typicode.com/posts/1`
+
+-> Download response to file with a special name:  
+- `curl -o filename.txt https://jsonplaceholder.typicode.com/posts/1`
+
+-> Download response with limit size:  
+- `curl -O https://jsonplaceholder.typicode.com/megafamous.png`
+
+-> Download response with max size:  
+- `curl -O --limit-rate 1000B https://jsonplaceholder.typicode.com/posts`
+
+-> Send POST with data (-d or --data):  
+- `curl -X PUT -d "title=Hello&body=Hello World" https://jsonplaceholder.typicode.com/posts`
+
+-> Send request with method PUT to update data (-d or --data):  
+- `curl -X PUT --data "title=Hello01&body=Hello World Update" https://jsonplaceholder.typicode.com/posts/2`
+
+-> Send request with method DELETE to delete item:  
+- `curl -X DELETE https://jsonplaceholder.typicode.com/posts/2`
+
+-> Basic authentication email:password:  
+- `curl -u moemengaballa@gmail.com:12345678 https://site.com/login`
+
+-> Basic authentication using token with curl:  
+- `curl --header "Authorization: Bearer xxxxxxxxx" https://host.com/`
+
+-> Request if URL redirect (301 Moved) complete to redirect:  
+- `curl -L https://google.com`
+
+-> Upload file as FileZilla FTP to server:  
+- `curl -u test@host.com:123456 -T hello.txt ftp://ftp.host.com`
+
+-> Download file as FileZilla FTP:  
+- `curl -u test@host.com:123456 -O hello.txt ftp://ftp.host.com/hello.txt`
+
+-> To ignore SSL certificate issues:  
+- `curl --insecure https://www.google.com.eg/`
+
+-> Get SSL certificate information from a remote web server:  
+- `curl --insecure -vvI https://www.google.com.eg/`
+
 
