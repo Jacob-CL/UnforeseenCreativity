@@ -15,11 +15,7 @@ A directory for every (most) Cyber Security / PenTest topics
 
 # 1. **Recon**
 # [WHOIS](https://whoisrb.org/docs/) commands
-The `whois` command queries **WHOIS databases** to retrieve information about domain registrations, IP addresses, and network ownership. It can help determine the following:
-- **Registrar Name** – The company that registered the domain (e.g., GoDaddy, Namecheap).
-- **Registrant Name & Contact Information** *(if not hidden by privacy protection)*.
-- **Domain Creation & Expiry Dates** – When the domain was registered and when it will expire.
-- **Domain Status** – Active, expired, on-hold, or locked to prevent transfer.
+The `whois` command queries **WHOIS databases** to retrieve information about domain registrations, IP addresses, and network ownership. 
 
 | Description | Command |
 |-------------|---------|
@@ -27,58 +23,26 @@ The `whois` command queries **WHOIS databases** to retrieve information about do
 | Use grep for specifics | `whois google.com \| grep "Name Server"` |
 | Team Cymru malware hash lookup using whois: (Note: Output is timestamp of last seen and detection rate) | `whois -h hash.cymru.com <SUSPICIOUS FILE HASH>` |
 
+## dig commands
+The `dig` command (Domain Information Groper) is a versatile and powerful utility for querying DNS servers and retrieving various types of DNS records
+| Description | Command |
+|-------------|---------|
+| Performs a default A record lookup for the domain. | `dig domain.com` |
+| Retrieves the IPv4 address (A record) associated with the domain. | `dig domain.com A` |
+| Retrieves the IPv6 address (AAAA record) associated with the domain. | `dig domain.com AAAA` |
+| Finds the mail servers (MX records) responsible for the domain. | `dig domain.com MX` |
+| Identifies the authoritative name servers for the domain. | `dig domain.com NS` |
+| Retrieves any TXT records associated with the domain. | `dig domain.com TXT` |
+| Retrieves the canonical name (CNAME) record for the domain. | `dig domain.com CNAME` |
+| Retrieves the start of authority (SOA) record for the domain. | `dig domain.com SOA` |
+| Specifies a specific name server to query; in this case 1.1.1.1. | `dig @1.1.1.1 domain.com` |
+| Shows the full path of DNS resolution. | `dig +trace domain.com` |
+| Performs a reverse lookup on the IP address 192.168.1.1 to find the associated hostname. You may need to specify a name server. | `dig -x 192.168.1.1` |
+| Provides a short, concise answer to the query. | `dig +short domain.com` |
+| Displays only the answer section of the query output. | `dig +noall +answer domain.com` |
+| Retrieves all available DNS records for the domain (Note: Many DNS servers ignore ANY queries to reduce load and prevent abuse, as per RFC 8482). | `dig domain.com ANY` |
 
-## WHOIS Resources
-| Resource | Organization |
-|----------|-------------|
-| [icann.org](https://www.icann.org/) | ICANN |
-| [iana.com](https://www.iana.org/) | IANA |
-| [nro.net](https://www.nro.net/) | NRO |
-| [afrinic.net](https://www.afrinic.net/) | AFRINIC |
-| [apnic.net](https://www.apnic.net/) | APNIC |
-| [ws.arin.net](https://www.arin.net/) | ARIN |
-| [lacnic.net](https://www.lacnic.net/) | LACNIC |
-| [ripe.net](https://www.ripe.net/) | RIPE |
-| [internic.net](https://www.internic.net/) | InterNIC |
-
-
-## Network Resources
-| Resource | Description |
-|----------|-------------|
-| [dnsstuff.com/tools](https://www.dnsstuff.com/tools) | DNSstuff Toolbox |
-| [network-tools.com](https://network-tools.com/) | Network-Tools |
-| [centralops.net](https://centralops.net/) | CentralOps |
-| [lg.he.net](https://lg.he.net/) | Hurricane Electric Looking Glass |
-| [bgp4.as/looking-glasses](https://www.bgp4.as/looking-glasses) | BGP Looking Glass |
-| [shodan.io](https://www.shodan.io/) | Shodan (Internet-wide scanning) |
-| [viz.greynoise.io](https://viz.greynoise.io/) | GreyNoise (Threat intelligence) |
-| [mxtoolbox.com/NetworkTools.aspx](https://mxtoolbox.com/NetworkTools.aspx) | MxToolBox |
-| [iana.org/numbers](https://www.iana.org/numbers) | IANA IP and ASN Lookup |
-
-# Relationship and Recon Tools
-| Resource | Description |
-|----------|-------------|
-| [github.com/ElevenPaths/FOCA](https://github.com/ElevenPaths/FOCA) | FOCA (Metadata Extraction) |
-| [github.com/laramies/theHarvester](https://github.com/laramies/theHarvester) | theHarvester (Email & Domain OSINT) |
-| [maltego.com](https://www.maltego.com/) | Maltego (Graph-Based OSINT) |
-| [github.com/lanmaster53/recon-ng](https://github.com/lanmaster53/recon-ng) | Recon-ng Framework (Automated Recon) |
-
-# People Search Resources
-| Resource | Description |
-|----------|-------------|
-| [peekyou.com](https://www.peekyou.com/) | PeekYou |
-| [spokeo.com](https://www.spokeo.com/) | Spokeo |
-| [pipl.com](https://www.pipl.com/) | Pipl |
-| [intelius.com](https://www.intelius.com/) | Intelius |
-| [publicrecords.searchsystems.net](https://publicrecords.searchsystems.net/) | Search Systems |
-
-# OSINT Websites
-| Resource | Description |
-|----------|-------------|
-| [vulnerabilityassessment.co.uk/Penetration%20Test.html](https://www.vulnerabilityassessment.co.uk/Penetration%20Test.html) | Vulnerability Assessment & Penetration Testing |
-| [securitysift.com/passive-reconnaissance/](https://www.securitysift.com/passive-reconnaissance/) | Passive Reconnaissance Techniques |
-| [pentest-standard.org/index.php/Intelligence_Gathering](https://pentest-standard.org/index.php/Intelligence_Gathering) | Penetration Testing Standard - Intelligence Gathering |
-| [onstrat.com/osint/](http://www.onstrat.com/osint/) | Open-Source Intelligence (OSINT) Guide |
+**Caution**: Some servers can detect and block excessive DNS queries. Use caution and respect rate limits. Always obtain permission before performing extensive DNS reconnaissance on a target.
 
 ---
 
