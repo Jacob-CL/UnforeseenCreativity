@@ -104,7 +104,7 @@ A directory for every (most) Cyber Security / PenTest topics
 | Send a suspicious hash to VirusTotal | `curl -v --request POST --url 'https://www.virustotal.com/vtapi/v2/file/report' -d apikey=<VT API KEY> -d 'resource=<SUSPICIOUS FILE HASH>'` |
 | Send a suspicious file to VirusTotal | `curl -v -F 'file=/<PATH TO FILE>/<SUSPICIOUS FILE NAME>' -F apikey=<VT API KEY> https://www.virustotal.com/vtapi/v2/file/scan` |
 
-# WHOIS commands
+# [WHOIS](https://whoisrb.org/docs/) commands
 The `whois` command queries **WHOIS databases** to retrieve information about domain registrations, IP addresses, and network ownership. It can help determine the following:
 - **Registrar Name** – The company that registered the domain (e.g., GoDaddy, Namecheap).
 - **Registrant Name & Contact Information** *(if not hidden by privacy protection)*.
