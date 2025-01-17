@@ -25,6 +25,8 @@ The `whois` command queries **WHOIS databases** to retrieve information about do
 |-------------|---------|
 | Basic WHOIS Lookup | `whois example.com` |
 | Use grep for specifics | `whois google.com \| grep "Name Server"` |
+| Team Cymru malware hash lookup using whois: (Note: Output is timestamp of last seen and detection rate) | `whois -h hash.cymru.com <SUSPICIOUS FILE HASH>` |
+
 
 ## WHOIS Resources
 | Resource | Organization |
