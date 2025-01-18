@@ -168,7 +168,7 @@ If you can anonymously enumerate ldap, then `s.info` should give you the CN and 
 - `ldapsearch -H ldap://10.129.1.207 -x -b "dc=inlanefreight,dc=local"`
 
 Windapsearch.py is a Python script used to perform anonymous and authenticated LDAP enumeration of AD users, groups, and computers using LDAP queries. It is an alternative to tools such as ldapsearch, which require you to craft custom LDAP queries:
-- To confirm connection - `python3 windapsearch.py --dc-ip 10.129.1.207 -u "" --functionality`
+- To confirm connection anonymously - `python3 windapsearch.py --dc-ip 10.129.1.207 -u "" --functionality`
 - Pull list of users - `python3 windapsearch.py --dc-ip 10.129.1.207 -u "" -U`
 - Pull list of computers - `python3 windapsearch.py --dc-ip 10.129.1.207 -u "" -C`
 - Authenitcated search - `python3 windapsearch.py --dc-ip 10.129.85.28 -u "rose" -p "KxEPkKe6R8su"`
