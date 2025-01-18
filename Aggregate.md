@@ -20,6 +20,8 @@ A directory for every (most) Cyber Security / PenTest topics
 - Code Repositories with `GitHub` and `GutLab`
 - Certificate Transparency with `crt.sh` and `Censys`
 
+**2. ??**
+
 
 ## Browser DevTools Shortcuts
 - Show DevTools - `[CTRL+SHIFT+I]` or `[F12]`
@@ -31,8 +33,6 @@ A directory for every (most) Cyber Security / PenTest topics
 - Determine file type - `file -i file.txt`  
 - Extract/Unzip file - `unzip file.txt -d extractedfileoutput.txt`  
 
-
-# 1. **Recon**
 # [WHOIS](https://whoisrb.org/docs/) commands
 - The `whois` command queries **WHOIS databases** to retrieve information about domain registrations, IP addresses, and network ownership. 
 - Basic WHOIS Lookup `whois example.com` 
