@@ -170,7 +170,18 @@ Comprehensive DNS enumeration tool that supports dictionary and brute-force atta
 Versatile tool that combines multiple DNS reconnaissance techniques and offers customisable output formats.
 
 # ldap
-TO check if we can interact with LDAP without crednetials run this python:
+Lightweight Directory Access Protocol (LDAP) is an integral part of Active Directory (AD). AD Powershell module cmdlets with `-Filter` and `-LDAPFilter` flags are usually how search or filter for LDAP information, e.g:
+ - `Get-ADUser -LDAPFilter '(userAccountControl:1.2.840.113556.1.4.803:=2)' | select name`
+ - `Get-ADGroup -LDAPFilter '(member:1.2.840.113556.1.4.1941:=CN=Harry Jones,OU=Network Ops,OU=IT,OU=Employees,DC=INLANEFREIGHT,DC=LOCAL)' | select Name`
+ - `Get-ADUser -Properties * -LDAPFilter '(&(objectCategory=user)(description=*))' | select samaccountname,description`
+ - `Get-ADComputer -Properties * -LDAPFilter '(userAccountControl:1.2.840.113556.1.4.803:=524288)' | select DistinguishedName,servicePrincipalName,TrustedForDelegation | fl`
+ - `Get-AdUser -LDAPFilter '(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=32))(adminCount=1)' -Properties * | select name,memberof | fl`
+ - `Get-ADUser -Identity harry.jones -Properties * | select memberof | ft -Wrap`
+ - `Get-ADGroup -Filter 'member -RecursiveMatch "CN=Harry Jones,OU=Network Ops,OU=IT,OU=Employees,DC=INLANEFREIGHT,DC=LOCAL"' | select name`
+ - `(Get-ADUser -SearchBase "OU=Employees,DC=INLANEFREIGHT,DC=LOCAL" -Filter *).count`
+
+ - 
+To check if we can interact with LDAP without crednetials run this python:
 ```p
 from ldap3 import *
 s = Server('<IP>', get_info = ALL)
@@ -179,8 +190,18 @@ c.bind()
 
 Should return: True
 
+s.info
 exit()
 ```
+If you can anonymously enumerate ldap, then `s.info` should give you the CN and DCs e.g `CN=Configuration,DC=sequel,DC=htb`. Then you can use the ldapsearch tool.
+- `ldapsearch -H ldap://10.129.1.207 -x -b "dc=inlanefreight,dc=local"`
+
+Windapsearch.py is a Python script used to perform anonymous and authenticated LDAP enumeration of AD users, groups, and computers using LDAP queries. It is an alternative to tools such as ldapsearch, which require you to craft custom LDAP queries:
+- To confirm connection - `python3 windapsearch.py --dc-ip 10.129.1.207 -u "" --functionality`
+- Pull list of users - `python3 windapsearch.py --dc-ip 10.129.1.207 -u "" -U`
+- Pull list of computers - `python3 windapsearch.py --dc-ip 10.129.1.207 -u "" -C`
+- Authenitcated search - `python3 windapsearch.py --dc-ip 10.129.85.28 -u "rose" -p "KxEPkKe6R8su"`
+
 
 # HTTPie
 
