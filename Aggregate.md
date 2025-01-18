@@ -182,7 +182,11 @@ ldapsearch-ad.py is another tool worth trying:
 - `python3 ldapsearch-ad.py -l 10.129.1.207 -d inlanefreight -u james.cross -p Summer2020 -t pass-pols`
 - Will reveal if accounts are prone to kerberoast: `python3 ldapsearch-ad.py -l 10.129.85.28 -d sequel -u rose -p KxEPkKe6R8su -t all`
 
-
+# SSH commands
+Login - `ssh username@host`
+Login with SSH Key - `ssh -i /path/to/private_key username@host`
+Create new SSH key pair - `ssh-keygen -t rsa -b 4096`
+Execute command without logging in - `ssh username@host "command"`
 
 # HTTPie
 
