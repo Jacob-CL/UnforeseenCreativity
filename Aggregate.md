@@ -169,7 +169,18 @@ Comprehensive DNS enumeration tool that supports dictionary and brute-force atta
 # [dnsrecon](https://github.com/darkoperator/dnsrecon) commands
 Versatile tool that combines multiple DNS reconnaissance techniques and offers customisable output formats.
 
+# ldap
+TO check if we can interact with LDAP without crednetials run this python:
+```p
+from ldap3 import *
+s = Server('<IP>', get_info = ALL)
+c = Connection(s,'','')
+c.bind()
 
+Should return: True
+
+exit()
+```
 
 # HTTPie
 
@@ -198,3 +209,5 @@ Versatile tool that combines multiple DNS reconnaissance techniques and offers c
 # Hydra
 
 # JWT-Tool
+
+# smb commands
