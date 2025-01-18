@@ -29,6 +29,10 @@ A directory for every (most) Cyber Security / PenTest topics
 | Show Network tab | `[CTRL+SHIFT+E]` |
 | Show Console tab | `[CTRL+SHIFT+K]` |
 
+##  Add to /etc/hosts
+ `echo "192.168.1.100 example.com" | sudo tee -a /etc/hosts`
+
+
 # 1. **Recon**
 # [WHOIS](https://whoisrb.org/docs/) commands
 The `whois` command queries **WHOIS databases** to retrieve information about domain registrations, IP addresses, and network ownership. 
@@ -180,8 +184,8 @@ Lightweight Directory Access Protocol (LDAP) is an integral part of Active Direc
  - `Get-ADGroup -Filter 'member -RecursiveMatch "CN=Harry Jones,OU=Network Ops,OU=IT,OU=Employees,DC=INLANEFREIGHT,DC=LOCAL"' | select name`
  - `(Get-ADUser -SearchBase "OU=Employees,DC=INLANEFREIGHT,DC=LOCAL" -Filter *).count`
 
- - 
-To check if we can interact with LDAP without crednetials run this python:
+## Unauthenticated enumeration
+To check if we can interact with LDAP without credentials run this python:
 ```p
 from ldap3 import *
 s = Server('<IP>', get_info = ALL)
@@ -201,6 +205,16 @@ Windapsearch.py is a Python script used to perform anonymous and authenticated L
 - Pull list of users - `python3 windapsearch.py --dc-ip 10.129.1.207 -u "" -U`
 - Pull list of computers - `python3 windapsearch.py --dc-ip 10.129.1.207 -u "" -C`
 - Authenitcated search - `python3 windapsearch.py --dc-ip 10.129.85.28 -u "rose" -p "KxEPkKe6R8su"`
+
+ldapsearch-ad.py is another tool worth trying:
+- `python3 ldapsearch-ad.py -h`
+- `python3 ldapsearch-ad.py -l 10.129.85.28 -t info`
+
+## Authenticated Enumeration
+- `python3 windapsearch.py --dc-ip 10.129.1.207 -u inlanefreight\\james.cross --da` (`domain\\username`)
+- `python3 ldapsearch-ad.py -l 10.129.1.207 -d inlanefreight -u james.cross -p Summer2020 -t pass-pols`
+- Will reveal if accounts are prone to kerberoast: `python3 ldapsearch-ad.py -l 10.129.85.28 -d sequel -u rose -p KxEPkKe6R8su -t all`
+
 
 
 # HTTPie
