@@ -94,6 +94,22 @@ Authenticate with `mssqlclient.py` - `python3 mssqlclient.py DOMAIN/USERNAME:PAS
 ---
 
 ## **SMB Commands**  
-Connect to SMB share - `smbclient //10.129.85.28/Accounting -U rose`  
-List files in SMB - `ls`  
-Download a file - `get filename.txt`  
+Connect to SMB share - `smbclient //10.129.85.28/Accounting\ Department -U rose`  
+List files in SMB - `ls` or `dir` 
+Download a file to where shell spawned - `get filename.txt`  
+Upload a file to SMB - `put localfile.txt`  
+Download multiple files - `mget *.txt`  
+Upload multiple files - `mput *.txt`  
+Change directory on SMB - `cd DIRECTORY_NAME`  
+View current directory on SMB - `pwd`  
+Delete a file on SMB - `rm filename.txt`  
+Create a new directory - `mkdir new_directory`  
+Remove a directory - `rmdir directory_name`  
+Show available shares - `smbclient -L //IP_ADDRESS -U USERNAME`  
+Authenticate without a password prompt - `smbclient //IP_ADDRESS/SHARE -U USERNAME%PASSWORD`  
+List shares anonymously - `smbclient -L //IP_ADDRESS -N`  
+Mount an SMB share to a local directory (Linux) - `sudo mount -t cifs //IP_ADDRESS/SHARE /mnt/smb -o username=USER,password=PASS`  
+Unmount an SMB share (Linux) - `sudo umount /mnt/smb`  
+Recursively download all files and directories - `prompt OFF; recurse ON; mget *`  
+Execute a command on SMB server - `! command` (e.g., `! whoami`)  
+Exit SMB client - `exit`  
