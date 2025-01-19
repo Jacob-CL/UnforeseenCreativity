@@ -17,3 +17,15 @@
 
 4.**Testing the Clients:** Pentesters evaluate the security posture of WiFi clients, such as laptops, smartphones, and IoT devices, that connect to the network. This involves testing for vulnerabilities in client software, operating systems, wireless drivers, and network stack implementations to identify potential entry points for attackers.
 
+
+## The Conection Cycle
+Beacon -> Probe Request + Response -> Authentication Request and Response -> Association Request and Response -> Some form of handshake or other security mechanism -> Disassociation/Deauthentication
+
+- Beacon frames from the access point can be identified using the following Wireshark filter - `(wlan.fc.type == 0) && (wlan.fc.type_subtype == 8)`
+- Probe request frames from the access point can be identified using the following Wireshark filter - `(wlan.fc.type == 0) && (wlan.fc.type_subtype == 4)`
+- The authentication process between the client and the access point can be observed using the following Wireshark filter - `(wlan.fc.type == 0) && (wlan.fc.type_subtype == 11)`
+- After the authentication process is complete, the station's association request can be viewed using the following Wireshark filter - `(wlan.fc.type == 0) && (wlan.fc.type_subtype == 0)`
+- The access point's association response can be viewed using the following Wireshark filter - `(wlan.fc.type == 0) && (wlan.fc.type_subtype == 1)`
+- If the example network uses WPA2, the EAPOL (handshake) frames can be viewed using the following Wireshark filter - `eapol`
+- Once the connection process is complete, the termination of the connection can be viewed by identifying which party (client or access point) initiated the disconnection. This can be done using the following Wireshark filter to capture Disassociation frames (10) or Deauthentication frames (12) - `(wlan.fc.type == 0) && (wlan.fc.type_subtype == 12) or (wlan.fc.type_subtype == 10)`
+
