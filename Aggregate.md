@@ -166,7 +166,7 @@ We can communicate with the directory service using LDAP queries to ask the serv
 - Count all AD users - `(Get-ADUser -SearchBase "OU=Employees,DC=INLANEFREIGHT,DC=LOCAL" -Filter *).count`
 - Count all AD users within all child containers - `(Get-ADUser -SearchBase "OU=Employees,DC=INLANEFREIGHT,DC=LOCAL" -SearchScope Subtree -Filter *).count`
 
-## Unauthenticated enumeration
+## Unauthenticated LDAP enumeration
 To check if we can interact with LDAP without credentials run this python:
 ```p
 from ldap3 import *
@@ -190,12 +190,26 @@ Windapsearch.py is a Python script used to perform anonymous and authenticated L
 
 ldapsearch-ad.py is another tool worth trying:
 - `python3 ldapsearch-ad.py -h`
-- `python3 ldapsearch-ad.py -l 10.129.85.28 -t info`
+- Gives you everything - `python3 ldapsearch-ad.py -l 10.129.85.28 -t info`
+- Users that can be ASREPRoasted - `python3 ldapsearch-ad.py -l 10.129.1.207 -d inlanefreight -u james.cross -p Summer2020 -t asreproast`
 
-## Authenticated Enumeration
+## Authenticated LDAP enumeration
 - `python3 windapsearch.py --dc-ip 10.129.1.207 -u inlanefreight\\james.cross --da` (`domain\\username`)
 - `python3 ldapsearch-ad.py -l 10.129.1.207 -d inlanefreight -u james.cross -p Summer2020 -t pass-pols`
 - Will reveal if accounts are prone to kerberoast: `python3 ldapsearch-ad.py -l 10.129.85.28 -d sequel -u rose -p KxEPkKe6R8su -t all`
+
+# DSQuery
+DS Tools is available by default on all modern Windows operating systems but required domain connectivity to perform enumeration activities.
+- `dsquery user "OU=Employees,DC=inlanefreight,DC=local" -name * -scope subtree -limit 0 | dsget user -samid -
+pwdneverexpires | findstr /V no`
+
+# WMI
+Windows Management Instrumentation (WMI) can also be used to access and query objects in Active Directory. Many scripting languages can interact with the WMI AD provider, but PowerShell makes this very easy.
+- `Get-WmiObject -Class win32_group -Filter "Domain='INLANEFREIGHT'" | Select Caption,Name`
+
+# ADSI
+Active Directory Service Interfaces (ADSI) is a set of COM interfaces that can query Active Directory. PowerShell again provides an easy way to interact with it.
+- `([adsisearcher]"(&(objectClass=Computer))").FindAll() | select Path`
 
 # SSH commands
 Login - `ssh username@host`
