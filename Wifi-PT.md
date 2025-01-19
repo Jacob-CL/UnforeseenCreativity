@@ -42,9 +42,10 @@ Beacon -> Probe Request + Response -> Authentication Request and Response -> Ass
 sudo iwconfig <interface> txpower 30
 sudo ifconfig <interface> up``` (Kernel may prevent such modifications)
 
-Checking Driver Capabilities of our Interface - `iw list`
-Scanning Available WiFi Networks - `iwlist <interface> scan |  grep 'Cell\|Quality\|ESSID\|IEEE'` (Can be very verbose so grepping might be necessary)`
-See all available channels for the wireless interface - 
-- 
+- Checking Driver Capabilities of our Interface - `iw list`
+- Scanning Available WiFi Networks - `iwlist <interface> scan |  grep 'Cell\|Quality\|ESSID\|IEEE'` (Can be very verbose so grepping might be necessary)`
+- See all available channels for the wireless interface - `iwlist wlan0 channel`
+- After bringing the interface down, change channel via - `sudo iwconfig wlan0 channel 64`
+- Bring interface down, then change the frequency - `sudo iwconfig wlan0 freq "5.52G"`
 
 
