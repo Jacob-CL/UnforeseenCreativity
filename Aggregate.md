@@ -171,6 +171,9 @@ We can communicate with the directory service using LDAP queries to ask the serv
 - User accounts that require a smart card for interactive logon (SMARTCARD_REQUIRED) - `Get-ADUser -Filter {SmartcardLogonRequired -eq $true} -Properties SmartcardLogonRequired | Select-Object Name, SamAccountName`
 - Find user who has useraccountcontrol attribute to 262656 - `Get-ADUser -LDAPFilter "(userAccountControl=262656)" -Properties userAccountControl, DistinguishedName | Select-Object -First 1 Name, SamAccountName, DistinguishedName, userAccountControl`
 - Who is a member of a group via nested groups? - `function Get-NestedGroupMembers {param ([string]$GroupName) \n Get-ADGroupMember -Identity $GroupName -Recursive | Select-Object Name, SamAccountName, ObjectClass} Get-NestedGroupMembers -GroupName "IT Support"`
+- Show me all admin groups - `Get-ADGroup -LDAPFilter "(adminCount=1)" | Select-Object Name, SamAccountName`
+- Count me all admin groups - `(Get-ADGroup -LDAPFilter "(adminCount=1)" | Select-Object Name, SamAccountName).count`
+
 
 
 ## Unauthenticated LDAP enumeration
