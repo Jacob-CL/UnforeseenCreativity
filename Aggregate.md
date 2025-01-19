@@ -31,7 +31,9 @@ A directory for every (most) Cyber Security / PenTest topics
 ## General
 - Add to /etc/hosts- `echo "192.168.1.100 example.com" | sudo tee -a /etc/hosts`
 - Determine file type - `file -i file.txt`  
-- Extract/Unzip file - `unzip file.txt -d extractedfileoutput.txt`  
+- Extract/Unzip file - `unzip file.txt -d extractedfileoutput.txt`
+- Powershell cmd to find installed software on Windows - `get-ciminstance win32_product | fl`
+- To filter out Microsoft Software - `get-ciminstance win32_product -Filter "NOT Vendor like '%Microsoft%'" | fl`
 
 # [WHOIS](https://whoisrb.org/docs/) commands
 - The `whois` command queries **WHOIS databases** to retrieve information about domain registrations, IP addresses, and network ownership. 
@@ -140,16 +142,29 @@ Comprehensive DNS enumeration tool that supports dictionary and brute-force atta
 # [dnsrecon](https://github.com/darkoperator/dnsrecon) commands
 Versatile tool that combines multiple DNS reconnaissance techniques and offers customisable output formats.
 
+# Remote Server Administration Tool (RSAT)
+Allows systems administrators to remotely manage Windows Server roles and features from a workstation running Windows 10, Windows 8.1, Windows 7, or Windows Vista. RSAT can only be installed on Professional or Enterprise editions of Windows. In an enterprise environment, RSAT can remotely manage Active Directory, DNS, and DHCP. RSAT also allows us to manage installed server roles and features, File Services, and Hyper-V. If installed the toolsd will be available under the Administrative Tools in the Control Panel
+- Check which, if any RSAT tools are install - `Get-WindowsCapability -Name RSAT* -Online | Select-Object -Property Name, State`
+- Install all available RSAT - `Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability –Online`
+- Or one at a time - `Add-WindowsCapability -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0  –Online`
+
 # ldap
-Lightweight Directory Access Protocol (LDAP) is an integral part of Active Directory (AD). AD Powershell module cmdlets with `-Filter` and `-LDAPFilter` flags are usually how search or filter for LDAP information, e.g:
- - `Get-ADUser -LDAPFilter '(userAccountControl:1.2.840.113556.1.4.803:=2)' | select name`
- - `Get-ADGroup -LDAPFilter '(member:1.2.840.113556.1.4.1941:=CN=Harry Jones,OU=Network Ops,OU=IT,OU=Employees,DC=INLANEFREIGHT,DC=LOCAL)' | select Name`
- - `Get-ADUser -Properties * -LDAPFilter '(&(objectCategory=user)(description=*))' | select samaccountname,description`
- - `Get-ADComputer -Properties * -LDAPFilter '(userAccountControl:1.2.840.113556.1.4.803:=524288)' | select DistinguishedName,servicePrincipalName,TrustedForDelegation | fl`
- - `Get-AdUser -LDAPFilter '(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=32))(adminCount=1)' -Properties * | select name,memberof | fl`
- - `Get-ADUser -Identity harry.jones -Properties * | select memberof | ft -Wrap`
- - `Get-ADGroup -Filter 'member -RecursiveMatch "CN=Harry Jones,OU=Network Ops,OU=IT,OU=Employees,DC=INLANEFREIGHT,DC=LOCAL"' | select name`
- - `(Get-ADUser -SearchBase "OU=Employees,DC=INLANEFREIGHT,DC=LOCAL" -Filter *).count`
+We can communicate with the directory service using LDAP queries to ask the service for information. Lightweight Directory Access Protocol (LDAP) is an integral part of Active Directory (AD). AD Powershell module cmdlets with `-Filter` and `-LDAPFilter` flags are usually how search or filter for LDAP information. LDAPFilter uses Polish notation.
+- For alisting of all user rights assigned to your current user - `whoami /priv`
+- Get all AD groups - `Get-ADObject -LDAPFilter '(objectClass=group)' | select name`
+- Get all administratively disabled accounts - `Get-ADObject -LDAPFilter '(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=2))' -Properties * | select samaccountname,useraccountcontrol`
+- Find administrative AD groups - `Get-ADGroup -Filter "adminCount -eq 1" | select Name`
+- Search all hosts in the domain like SQL* - `Get-ADComputer  -Filter "DNSHostName -like 'SQL*'"`
+- Allo domain admin users with DoesNotRequirePreAuth - `Get-ADUser -Filter {adminCount -eq '1' -and DoesNotRequirePreAuth -eq 'True'}`
+- All admin users with a ServicePrincipalName (SPN) - `Get-ADUser -Filter "adminCount -eq '1'" -Properties * | where servicePrincipalName -ne $null | select SamAccountName,MemberOf,ServicePrincipalName | fl`
+- Filter on Disabled User Accounts - `Get-ADUser -LDAPFilter '(userAccountControl:1.2.840.113556.1.4.803:=2)' | select name`
+- This rule will find all groups that the user Harry Jones is a member of - `Get-ADGroup -LDAPFilter '(member:1.2.840.113556.1.4.1941:=CN=Harry Jones,OU=Network Ops,OU=IT,OU=Employees,DC=INLANEFREIGHT,DC=LOCAL)' | select Name`
+- Search for all domain users that do not have a blank description field - `Get-ADUser -Properties * -LDAPFilter '(&(objectCategory=user)(description=*))' | select samaccountname,description`
+- Find Trusted Users - `Get-ADComputer -Properties * -LDAPFilter '(userAccountControl:1.2.840.113556.1.4.803:=524288)' | select DistinguishedName,servicePrincipalName,TrustedForDelegation | fl`
+- FInd users where the password can be blank - `Get-AdUser -LDAPFilter '(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=32))(adminCount=1)' -Properties * | select name,memberof | fl`
+- Find nested group membership of a user with the RecursiveMatch parameter - `Get-ADGroup -Filter 'member -RecursiveMatch "CN=Harry Jones,OU=Network Ops,OU=IT,OU=Employees,DC=INLANEFREIGHT,DC=LOCAL"' | select name`
+- Count all AD users - `(Get-ADUser -SearchBase "OU=Employees,DC=INLANEFREIGHT,DC=LOCAL" -Filter *).count`
+- Count all AD users within all child containers - `(Get-ADUser -SearchBase "OU=Employees,DC=INLANEFREIGHT,DC=LOCAL" -SearchScope Subtree -Filter *).count`
 
 ## Unauthenticated enumeration
 To check if we can interact with LDAP without credentials run this python:
