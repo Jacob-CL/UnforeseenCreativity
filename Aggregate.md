@@ -170,9 +170,13 @@ We can communicate with the directory service using LDAP queries to ask the serv
 - What group is a IT Support group nested to? - `Get-ADGroup -Identity "IT Support" -Properties MemberOf | Select-Object -ExpandProperty MemberOf`
 - User accounts that require a smart card for interactive logon (SMARTCARD_REQUIRED) - `Get-ADUser -Filter {SmartcardLogonRequired -eq $true} -Properties SmartcardLogonRequired | Select-Object Name, SamAccountName`
 - Find user who has useraccountcontrol attribute to 262656 - `Get-ADUser -LDAPFilter "(userAccountControl=262656)" -Properties userAccountControl, DistinguishedName | Select-Object -First 1 Name, SamAccountName, DistinguishedName, userAccountControl`
-- Who is a member of a group via nested groups? - `function Get-NestedGroupMembers {param ([string]$GroupName) \n Get-ADGroupMember -Identity $GroupName -Recursive | Select-Object Name, SamAccountName, ObjectClass} Get-NestedGroupMembers -GroupName "IT Support"`
+- Who is a member of a group via nested groups? - ```function Get-NestedGroupMembers {param ([string]$GroupName)
+Get-ADGroupMember -Identity $GroupName -Recursive | Select-Object Name, SamAccountName, ObjectClass} Get-NestedGroupMembers -GroupName "IT Support"```
 - Show me all admin groups - `Get-ADGroup -LDAPFilter "(adminCount=1)" | Select-Object Name, SamAccountName`
 - Count me all admin groups - `(Get-ADGroup -LDAPFilter "(adminCount=1)" | Select-Object Name, SamAccountName).count`
+- Find all users subject to ASREPRoasting and NOT a protected user - ```$asrepUsers = Get-ADUser -Filter {DoesNotRequirePreAuth -eq $true} -Properties DoesNotRequirePreAuth, SamAccountName | Select-Object SamAccountName
+$protectedUsers = Get-ADGroupMember -Identity "Protected Users" | Select-Object -ExpandProperty SamAccountName
+$asrepUsers | Where-Object { $_.SamAccountName -notin $protectedUsers }```
 
 
 
