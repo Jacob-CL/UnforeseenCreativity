@@ -210,6 +210,7 @@ ldapsearch-ad.py is another tool worth trying:
 - Users that can be ASREPRoasted - `python3 ldapsearch-ad.py -l 10.129.1.207 -d inlanefreight -u james.cross -p Summer2020 -t asreproast`
 
 ## Authenticated LDAP enumeration
+Remeber you may lack RDP perms to the box but still have perms to auth enumerate with LDAP
 - `python3 windapsearch.py --dc-ip 10.129.1.207 -u inlanefreight\\james.cross --da` (`domain\\username`)
 - `python3 ldapsearch-ad.py -l 10.129.1.207 -d inlanefreight -u james.cross -p Summer2020 -t pass-pols`
 - Will reveal if accounts are prone to kerberoast: `python3 ldapsearch-ad.py -l 10.129.85.28 -d sequel -u rose -p KxEPkKe6R8su -t all`
