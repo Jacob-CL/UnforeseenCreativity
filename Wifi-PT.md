@@ -85,12 +85,6 @@ Monitor mode, also known as promiscuous mode, is a specialized operating mode fo
 - `sudo iw wlan0 set monitor control`
 
 # Aircrack-ng Suite of tools (About 20)
-Focuses on different areas of WiFi security:
-- Monitoring: Packet capture and export of data to text files for further processing by third party tools.
-- Attacking: Replay attacks, deauthentication, fake access points and others via packet injection.
-- Testing: Checking WiFi cards and driver capabilities (capture and injection).
-- Cracking: WEP and WPA PSK (WPA 1 and 2).
-
 Most common -
 - Airmon-ng - Airmon-ng can enable and disable monitor mode on wireless interfaces.
 - Airodump-ng - Airodump-ng can capture raw 802.11 frames.
