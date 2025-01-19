@@ -161,12 +161,15 @@ We can communicate with the directory service using LDAP queries to ask the serv
 - This rule will find all groups that the user Harry Jones is a member of - `Get-ADGroup -LDAPFilter '(member:1.2.840.113556.1.4.1941:=CN=Harry Jones,OU=Network Ops,OU=IT,OU=Employees,DC=INLANEFREIGHT,DC=LOCAL)' | select Name`
 - Search for all domain users that do not have a blank description field - `Get-ADUser -Properties * -LDAPFilter '(&(objectCategory=user)(description=*))' | select samaccountname,description`
 - Find Trusted Computers - `Get-ADComputer -Properties * -LDAPFilter '(userAccountControl:1.2.840.113556.1.4.803:=524288)' | select DistinguishedName,servicePrincipalName,TrustedForDelegation | fl`
-- FInd users where the password can be blank - `Get-AdUser -LDAPFilter '(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=32))(adminCount=1)' -Properties * | select name,memberof | fl`
+- Find admin users where the password can be blank - `Get-AdUser -LDAPFilter '(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=32))(adminCount=1)' -Properties * | select name,memberof | fl`
+- Find users where password can be blank (no extra filters - `Get-AdUser -LDAPFilter '(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=32))(adminCount=1)' -Properties * | select name,memberof | fl`
 - Find nested group membership of a user with the RecursiveMatch parameter - `Get-ADGroup -Filter 'member -RecursiveMatch "CN=Harry Jones,OU=Network Ops,OU=IT,OU=Employees,DC=INLANEFREIGHT,DC=LOCAL"' | select name`
 - Count all AD users - `(Get-ADUser -SearchBase "OU=Employees,DC=INLANEFREIGHT,DC=LOCAL" -Filter *).count`
 - Count all AD users within all child containers - `(Get-ADUser -SearchBase "OU=Employees,DC=INLANEFREIGHT,DC=LOCAL" -SearchScope Subtree -Filter *).count`
+- What group is a IT Support group nested to? - `Get-ADGroup -Identity "IT Support" -Properties MemberOf | Select-Object -ExpandProperty MemberOf`
 - User accounts that require a smart card for interactive logon (SMARTCARD_REQUIRED) - `Get-ADUser -Filter {SmartcardLogonRequired -eq $true} -Properties SmartcardLogonRequired | Select-Object Name, SamAccountName`
 - Find user who has useraccountcontrol attribute to 262656 - `Get-ADUser -LDAPFilter "(userAccountControl=262656)" -Properties userAccountControl, DistinguishedName | Select-Object -First 1 Name, SamAccountName, DistinguishedName, userAccountControl`
+- Who is a member of a group via nested groups? - `function Get-NestedGroupMembers {param ([string]$GroupName) \n Get-ADGroupMember -Identity $GroupName -Recursive | Select-Object Name, SamAccountName, ObjectClass} Get-NestedGroupMembers -GroupName "IT Support"`
 
 
 ## Unauthenticated LDAP enumeration
