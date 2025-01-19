@@ -34,6 +34,7 @@ A directory for every (most) Cyber Security / PenTest topics
 - Extract/Unzip file - `unzip file.txt -d extractedfileoutput.txt`
 - Powershell cmd to find installed software on Windows - `get-ciminstance win32_product | fl`
 - To filter out Microsoft Software - `get-ciminstance win32_product -Filter "NOT Vendor like '%Microsoft%'" | fl`
+- See privileges - `whoami /priv` (works best when cmd is running as admin)
 
 # [WHOIS](https://whoisrb.org/docs/) commands
 - The `whois` command queries **WHOIS databases** to retrieve information about domain registrations, IP addresses, and network ownership. 
@@ -177,6 +178,7 @@ Get-ADGroupMember -Identity $GroupName -Recursive | Select-Object Name, SamAccou
 - Find all users subject to ASREPRoasting and NOT a protected user - ```$asrepUsers = Get-ADUser -Filter {DoesNotRequirePreAuth -eq $true} -Properties DoesNotRequirePreAuth, SamAccountName | Select-Object SamAccountName
 $protectedUsers = Get-ADGroupMember -Identity "Protected Users" | Select-Object -ExpandProperty SamAccountName
 $asrepUsers | Where-Object { $_.SamAccountName -notin $protectedUsers }```
+- Get all users with a SPN set - `Gety-ADObject -LDAPFilter "(servicePrincipalName=*)`
 
 
 
