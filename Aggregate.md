@@ -154,7 +154,8 @@ We can communicate with the directory service using LDAP queries to ask the serv
 - Get all AD groups - `Get-ADObject -LDAPFilter '(objectClass=group)' | select name`
 - Get all administratively disabled accounts - `Get-ADObject -LDAPFilter '(&(objectCategory=person)(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=2))' -Properties * | select samaccountname,useraccountcontrol`
 - Find administrative AD groups - `Get-ADGroup -Filter "adminCount -eq 1" | select Name`
-- Search all hosts in the domain like SQL* - `Get-ADComputer  -Filter "DNSHostName -like 'SQL*'"`
+- Search all hosts in the domain like SQL* - `Get-ADComputer  -Filter "DNSHostName -like 'SQL*'"` (Be careful filtering on DNSHostname, it's assuming it's correctly labelled.)
+- Find computer that starts with RD - `Get-ADComputer -Filter {Name -like 'RD*'} - Properties *`
 - Allo domain admin users with DoesNotRequirePreAuth - `Get-ADUser -Filter {adminCount -eq '1' -and DoesNotRequirePreAuth -eq 'True'}`
 - All admin users with a ServicePrincipalName (SPN) - `Get-ADUser -Filter "adminCount -eq '1'" -Properties * | where servicePrincipalName -ne $null | select SamAccountName,MemberOf,ServicePrincipalName | fl`
 - Filter on Disabled User Accounts - `Get-ADUser -LDAPFilter '(userAccountControl:1.2.840.113556.1.4.803:=2)' | select name`
