@@ -1,9 +1,12 @@
 # Basics
 
+### General
+- Employing a Rogue AP or Evil-Twin Attack: - We would want our interface to support master mode with a management daemon like hostapd, hostapd-mana, hostapd-wpe, airbase-ng, and others.
+- Backhaul and Mesh or Mesh-Type system exploitation: - We would want to make sure our interface supports ad-hoc and mesh modes accordingly. For this kind of exploitation we are normally sufficient with monitor mode and packet injection, but the extra capabilities can allow us to perform node impersonation among others.
+
 ### Required tooling must haves
 - IEEE 802.11ac or IEEE 802.11ax support
 - Supports at least monitor mode and packet injection
-
 
 ### WEP (Wired Equivalent Privacy)
 - The original WiFi security protocol, WEP, provides basic encryption but is now considered outdated and insecure due to vulnerabilities that make it easy to breach.
@@ -80,9 +83,6 @@ This mode turns our interface into a mesh point. We can provide additional confi
 ## Monitor Mode
 Monitor mode, also known as promiscuous mode, is a specialized operating mode for wireless network interfaces. In this mode, the network interface can capture all wireless traffic within its range, regardless of the intended recipient.
 - `sudo iw wlan0 set monitor control`
-
-- Employing a Rogue AP or Evil-Twin Attack: - We would want our interface to support master mode with a management daemon like hostapd, hostapd-mana, hostapd-wpe, airbase-ng, and others.
-- Backhaul and Mesh or Mesh-Type system exploitation: - We would want to make sure our interface supports ad-hoc and mesh modes accordingly. For this kind of exploitation we are normally sufficient with monitor mode and packet injection, but the extra capabilities can allow us to perform node impersonation among others.
 
 # Aircrack-ng Suite of tools (About 20)
 Focuses on different areas of WiFi security:
