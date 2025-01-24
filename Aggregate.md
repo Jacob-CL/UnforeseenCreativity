@@ -143,7 +143,8 @@ The `dig` command (Domain Information Groper) is a versatile and powerful utilit
 ---
 
 # [dnsenum](https://github.com/fwaeytens/dnsenum) commands
-Comprehensive DNS enumeration tool that supports dictionary and brute-force attacks for discovering subdomains.
+Comprehensive DNS enumeration tool that supports dictionary and brute-force attacks for discovering subdomains. REMINDER: Subdomains are the XYZ.google.com and directories are the google.com/XYZ
+- `dnsenum --enum inlanefreight.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt`
 
 ---
 
