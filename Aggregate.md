@@ -21,7 +21,7 @@ Have a web traffic port?
     - `ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirb/common.txt`
     - `gobuster dir -u http://<IP> -w wordlist.txt`
     - `dirb http://<IP>/ wordlist.txt`
-  - Are there any hidden subdomains? (XYZ.google.com)
+  - Are there any hidden subdomains? (XYZ.google.com - Remember to add subdomains to your hosts file as you discover them.)
     - `ffuf -u http://FUZZ.example.com -w subdomains.txt -fs 404`
     - `dnsenum --enum inlanefreight.com -f wordlist.txt`
     - `subfinder -d <DOMAIN>`
@@ -39,6 +39,7 @@ Have a web traffic port?
     - `gobuster dir -u http://<IP> -w api-wordlist.txt`
   - Is there the oppurtunity for SQL Injection, XXS, SSRF or command injection?
   - Can you check cookies and session management? Are they `HttpOnly`, `Secure`, `SameSite`?
+  - Can you find a vhost?
 
  Have an SSH port?
  - What version of SSH is running?
@@ -49,6 +50,7 @@ Have a web traffic port?
    - `msfconsole search OpenSSH`
  - Can I enumerate valid usernames?
    - `hydra -L users.txt -p test123 ssh://<IP> -V`
+ - Is there anything on [WebArchive / Waybackmachine?](https://web.archive.org)
 
 
   
