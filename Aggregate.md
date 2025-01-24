@@ -40,6 +40,9 @@ A directory for every (most) Cyber Security / PenTest topics
 - To filter out Microsoft Software - `get-ciminstance win32_product -Filter "NOT Vendor like '%Microsoft%'" | fl`
 - See privileges - `whoami /priv` (works best when cmd is running as admin)
 
+# nmap
+- `nmap -sC -sV -p- TARGETIP`
+
 # [WHOIS](https://whoisrb.org/docs/) commands
 - The `whois` command queries **WHOIS databases** to retrieve information about domain registrations, IP addresses, and network ownership. 
 - Basic WHOIS Lookup `whois example.com` 
