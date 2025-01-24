@@ -17,9 +17,12 @@ Have a web traffic port?
     - See above NMAP scan
   - Can you DNS zone transfer? (need domain name)
     - `dig axfr <DOMAIN_NAME_TO_TRANSFER> @<DNS_IP>`
-  - Are they any hidden directories?
+  - Are they any hidden directories? (google.com/XYZ)
+    - `ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirb/common.txt`
     - `gobuster dir -u http://<IP> -w wordlist.txt`
-  - Are there any hidden subdomains?
+    - `dirb http://<IP>/ wordlist.txt`
+  - Are there any hidden subdomains? (XYZ.google.com)
+    - `ffuf -u http://FUZZ.example.com -w subdomains.txt -fs 404`
     - `dnsenum --enum inlanefreight.com -f wordlist.txt`
     - `subfinder -d <DOMAIN>`
   - What is the domain name of the ip?
@@ -37,8 +40,23 @@ Have a web traffic port?
   - Is there the oppurtunity for SQL Injection, XXS, SSRF or command injection?
   - Can you check cookies and session management? Are they `HttpOnly`, `Secure`, `SameSite`?
 
-- Have an SSH port?
-  - Can you 
+ Have an SSH port?
+ - What version of SSH is running?
+   - `nmap -p 22 --script ssh2-enum-algos,ssh-hostkey,sshv1 <IP>`
+   - `nc <IP> 22`
+ - Are there any known vulnerabilities for the SSH version?
+   - `searchsploit OpenSSH <VERSION>`
+   - `msfconsole search OpenSSH`
+ - Can I enumerate valid usernames?
+   - `hydra -L users.txt -p test123 ssh://<IP> -V`
+
+
+  
+
+
+
+
+
 **2. ??**
 
 
