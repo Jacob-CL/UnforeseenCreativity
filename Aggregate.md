@@ -32,9 +32,8 @@ A directory for every (most) Cyber Security / PenTest topics
   - What kind of authN is there? Can you brute force?
     - `medusa -h <IP> -U userlist.txt -P passlist.txt -M http`
     - `hydra -L users.txt -P passwords.txt <IP> http-post-form "/login:username=^USER^&password=^PASS^:Invalid"`
-  - Are there API endpoints?
-  - Look for `/api`, `/graphql`, `/swagger`, `/openapi.json`
-  - `gobuster dir -u http://<IP> -w api-wordlist.txt`
+  - Are there API endpoints? Look for `/api`, `/graphql`, `/swagger`, `/openapi.json`
+    - `gobuster dir -u http://<IP> -w api-wordlist.txt`
   - Is there the oppurtunity for SQL Injection, XXS, SSRF or command injection?
   - Can you check cookies and session management? Are they `HttpOnly`, `Secure`, `SameSite`?
 
