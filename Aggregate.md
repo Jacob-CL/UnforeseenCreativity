@@ -239,6 +239,9 @@ Active Directory Service Interfaces (ADSI) is a set of COM interfaces that can q
 - Execute command without logging in - `ssh username@host "command"`
 - Check auth methods of SSH - `nmap -p22 --script ssh-auth-methods <TARGET-IP>`
 
+# Gobuster
+- Enumerate hidden directories - `gobuster dir -u http://backfire.htb:8000/ -w wordlist.txt`
+
 # HTTPie
 
 # Wget Commands
