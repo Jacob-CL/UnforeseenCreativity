@@ -18,6 +18,7 @@ A directory for every (most) Cyber Security / PenTest topics
   - What service is running behind it? Apache, Nginx, IIS, Tomcat?
     - See above NMAP scan
   - Can you DNS zone transfer? (need domain name)
+    - `dig @ns1.example.com example.com axfr`
     - `dig axfr <DOMAIN_NAME_TO_TRANSFER> @<DNS_IP>`
   - Are they any hidden directories? (google.com/XYZ)
     - `ffuf -u http://<IP>/FUZZ -w /usr/share/wordlists/dirb/common.txt`
@@ -41,7 +42,10 @@ A directory for every (most) Cyber Security / PenTest topics
     - `gobuster dir -u http://<IP> -w api-wordlist.txt`
   - Is there the oppurtunity for SQL Injection, XXS, SSRF or command injection?
   - Can you check cookies and session management? Are they `HttpOnly`, `Secure`, `SameSite`?
-  - Can you find a vhost?
+  - Can you find a vhost? (Look at the `host` header - does the request hostname match the response hostname?)
+    - `gobuster vhost -u http://192.0.2.1 -w subdmain-hostnames.txt`
+    - `gobuster vhost -u http://<target_IP_address> -w <wordlist_file> --append-domain`
+    - `gobuster vhost -u http://inlanefreight.htb:81 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain`
 
 ### Have an SSH port?
  - What version of SSH is running?
