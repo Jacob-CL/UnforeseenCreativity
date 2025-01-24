@@ -8,7 +8,7 @@ A directory for every (most) Cyber Security / PenTest topics
 **1. Recon Methodology:**
 `nmap -sC -sV -p- TARGETIP`
 ### Questions to ask
-- Have a web traffic port?
+Have a web traffic port?
   - Is it accessible? What are the response codes and headers?
     - `curl -s -I -L http://<IP>` 
   - Is there a robots.txt?
