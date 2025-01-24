@@ -20,6 +20,10 @@ A directory for every (most) Cyber Security / PenTest topics
 - Code Repositories with `GitHub` and `GutLab`
 - Certificate Transparency with `crt.sh` and `Censys`
 
+### Recon Notes
+  Have a web traffic port? Enumerate hidden directories with gobuster
+  ---
+
 **2. ??**
 
 
@@ -233,6 +237,7 @@ Active Directory Service Interfaces (ADSI) is a set of COM interfaces that can q
 - Login with SSH Key - `ssh -i /path/to/private_key username@host`
 - Create new SSH key pair - `ssh-keygen -t rsa -b 4096`
 - Execute command without logging in - `ssh username@host "command"`
+- Check auth methods of SSH - `nmap -p22 --script ssh-auth-methods <TARGET-IP>`
 
 # HTTPie
 
