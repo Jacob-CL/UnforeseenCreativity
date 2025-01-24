@@ -9,8 +9,8 @@ A directory for every (most) Cyber Security / PenTest topics
 `nmap -sC -sV -p- TARGETIP`
 `finalrecon --full example.com`
 
-### Questions to ask
-Have a web traffic port?
+## Questions to ask
+### Have a web traffic port?
   - Is it accessible? What are the response codes and headers?
     - `curl -s -I -L http://<IP>` 
   - Is there a robots.txt?
@@ -43,7 +43,7 @@ Have a web traffic port?
   - Can you check cookies and session management? Are they `HttpOnly`, `Secure`, `SameSite`?
   - Can you find a vhost?
 
- Have an SSH port?
+### Have an SSH port?
  - What version of SSH is running?
    - `nmap -p 22 --script ssh2-enum-algos,ssh-hostkey,sshv1 <IP>`
    - `nc <IP> 22`
