@@ -9,22 +9,34 @@ A directory for every (most) Cyber Security / PenTest topics
 `nmap -sC -sV -p- TARGETIP`
 ### Questions to ask
 - Have a web traffic port?
-  - Is it accessible? What are the response codes?
-    - `curl -I http://<IP>`
+  - Is it accessible? What are the response codes and headers?
+    - `curl -s -I -L http://<IP>` 
   - Is there a robots.txt?
     - `curl http://<IP>/robots.txt`
-  - What service is running behind it? Apache, Nginx, IIS, Tomcat? (Above NMAP scan will tell you)
-  - Can you DNS zone transfer?
+  - What service is running behind it? Apache, Nginx, IIS, Tomcat?
+    - See above NMAP scan
+  - Can you DNS zone transfer? (need domain name)
+    - `dig axfr <DOMAIN_NAME_TO_TRANSFER> @<DNS_IP>`
   - Are they any hidden directories?
+    - `gobuster dir -u http://<IP> -w wordlist.txt`
   - Are there any hidden subdomains?
+    - `dnsenum --enum inlanefreight.com -f wordlist.txt`
+    - `subfinder -d <DOMAIN>`
   - What is the domain name of the ip?
+    - `nslookup <IP_ADDRESS>`
   - Can you see any outdated software or known vulnerabilities?
+    - See above NMAP scan or `nmap --script vuln <IP>` | `nikto -h http://<IP>`
   - Is there an SSL/TLS Certificate? Self-signed? And what domains does it cover?
-  - What kind of authN is there?
+    - `sslscan <IP>:443`
+    - `openssl s_client -connect <IP>:443`
+  - What kind of authN is there? Can you brute force?
+    - `medusa -h <IP> -U userlist.txt -P passlist.txt -M http`
+    - `hydra -L users.txt -P passwords.txt <IP> http-post-form "/login:username=^USER^&password=^PASS^:Invalid"`
   - Are there API endpoints?
+  - Look for `/api`, `/graphql`, `/swagger`, `/openapi.json`
+  - `gobuster dir -u http://<IP> -w api-wordlist.txt`
   - Is there the oppurtunity for SQL Injection, XXS, SSRF or command injection?
-  - Does it leak sensitive files?
-  - Can you check cookies and session management?
+  - Can you check cookies and session management? Are they `HttpOnly`, `Secure`, `SameSite`?
 
 - Have an SSH port?
   - Can you 
