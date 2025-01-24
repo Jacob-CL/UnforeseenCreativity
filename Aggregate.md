@@ -21,8 +21,8 @@ A directory for every (most) Cyber Security / PenTest topics
 - Certificate Transparency with `crt.sh` and `Censys`
 
 ### Recon Notes
-  Have a web traffic port? Enumerate hidden directories with gobuster
-  ---
+- Have a web traffic port? Enumerate hidden directories with gobuster
+
 
 **2. ??**
 
