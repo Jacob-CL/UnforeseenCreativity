@@ -229,10 +229,10 @@ Active Directory Service Interfaces (ADSI) is a set of COM interfaces that can q
 - `([adsisearcher]"(&(objectClass=Computer))").FindAll() | select Path`
 
 # SSH commands
-Login - `ssh username@host`
-Login with SSH Key - `ssh -i /path/to/private_key username@host`
-Create new SSH key pair - `ssh-keygen -t rsa -b 4096`
-Execute command without logging in - `ssh username@host "command"`
+- Login - `ssh username@host`
+- Login with SSH Key - `ssh -i /path/to/private_key username@host`
+- Create new SSH key pair - `ssh-keygen -t rsa -b 4096`
+- Execute command without logging in - `ssh username@host "command"`
 
 # HTTPie
 
