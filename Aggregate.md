@@ -6,27 +6,28 @@ A directory for every (most) Cyber Security / PenTest topics
  - [HackTheBox Academy](https://academy.hackthebox.com)
 
 **1. Recon Methodology:**
-### Tools
-- Port Scanning, Network Mapping, and Service Enumeration with `Nmap`
-- OS Fingerprinting with `Nmap`, `Wappalyzer`, `WhatWeb`, and `wafw00f`
-- Vulnerability Scanning with `Nessus`, `OpenVAS` and `Nikto`
-- Banner Grabbing with `Netcat` and `curl`
-- Web Spidering with `Burp Suite`, `OWASP ZAP Spider`, `Scrapy`
-- Search engines `Google Dorking`, `DuckDuckGo`, `Shodan`, `Yandex`, `Baidu`
-- `WHOIS` Lookups for domain registration details
-- DNS Zone Transfers and Subdomain Bruteforcing with `dig`, `nslookup`, `dnsenum` or `dnsrecon`
-- Virtual Host Discovery with `gobuster` and `ffuf`
-- Web Archive Analysis with `Wayback Machine`
-- Social Media Analysis with `LinkedIn`, `Twitter/X`, `Facebook`, `Instagram`
-- Code Repositories with `GitHub` and `GutLab`
-- Certificate Transparency with `crt.sh` and `Censys`
-
-### Questions to ask during recon
+`nmap -sC -sV -p- TARGETIP`
+### Questions to ask
 - Have a web traffic port?
+  - Is it accessible? What are the response codes?
+    - `curl -I http://<IP>`
+  - Is there a robots.txt?
+    - `curl http://<IP>/robots.txt`
+  - What service is running behind it? Apache, Nginx, IIS, Tomcat? (Above NMAP scan will tell you)
   - Can you DNS zone transfer?
-  - Enumerate hidden directories with gobuster
+  - Are they any hidden directories?
+  - Are there any hidden subdomains?
+  - What is the domain name of the ip?
+  - Can you see any outdated software or known vulnerabilities?
+  - Is there an SSL/TLS Certificate? Self-signed? And what domains does it cover?
+  - What kind of authN is there?
+  - Are there API endpoints?
+  - Is there the oppurtunity for SQL Injection, XXS, SSRF or command injection?
+  - Does it leak sensitive files?
+  - Can you check cookies and session management?
 
-
+- Have an SSH port?
+  - Can you 
 **2. ??**
 
 
