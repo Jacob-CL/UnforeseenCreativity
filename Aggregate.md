@@ -66,8 +66,8 @@
    - `hydra -L users.txt -p test123 ssh://<IP> -V`
 
 
-
-  
+# JavaScript Deobfuscate
+  - [Make it pretty](https://prettier.io/playground/) --> then [unpack](https://matthewfl.com/unPacker.html)
 
 
 
