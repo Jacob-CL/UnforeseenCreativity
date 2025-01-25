@@ -11,6 +11,8 @@ A directory for every (most) Cyber Security / PenTest topics
 
 `finalrecon --full example.com`
 
+`sudo nano /etc/hosts` - Ctrl-X --> Y --> Enter
+
 `echo "10.129.227.248 s3.thetoppers.htb" | sudo tee -a /etc/hosts`
 
 ## Questions to ask
