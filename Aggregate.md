@@ -47,8 +47,7 @@
   - Can you check cookies and session management? Are they `HttpOnly`, `Secure`, `SameSite`?
   - Can you find a vhost? (Look at the `host` header - does the request hostname match the response hostname?)
     - Add all subdomains/vhosts to hosts file and enumarate again - they can be nested.
-    - `gobuster vhost -u http://<target_IP_address> -w <wordlist_file> --append-domain`
-    - `gobuster vhost -u http://inlanefreight.htb:81 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain`
+    - `ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://academy.htb:PORT/ -H 'Host: FUZZ.academy.htb'`
   - Is there a WAF?
     - `wafw00f inlanefreight.com`
     - `nikto -h inlanefreight.com `
@@ -307,11 +306,13 @@ Active Directory Service Interfaces (ADSI) is a set of COM interfaces that can q
 # Telnet Commands
 
 # FFuf Commands (Use domain name)
-Useful for fuzzing directories, files + extensions, vhosts, PHP parameters and parameter values
+Useful for fuzzing directories, files + extensions, vhosts, PHP parameters and parameter values. To scan for VHosts, without manually adding the entire wordlist to our /etc/hosts, we will be fuzzing HTTP headers, specifically the Host: header. To do that, we can use the -H flag to specify a header and will use the FUZZ keyword within it. 
 - `ffuf -u http://FUZZ.domain:41823 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt`
 - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/web-extensions.txt:FUZZ -u http://domain:PORT/blog/indexFUZZ`
 - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://domain:PORT/blog/FUZZ.php` (If we know it runs PHP)
-- This one for all enumerating - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ -recursion -recursion-depth 1 -e .php -v`
+- This one for all enumerating - `ffuf -w cleaned-wordlist.txt:FUZZ -u http://83.136.250.52:37289/FUZZ -recursion -recursion-depth 1 -e .php -mc 200,301,302,403 -t 50 -o results.txt -v`
+- This one for VHOST - `ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://academy.htb:PORT/ -H 'Host: FUZZ.academy.htb' -fs xxx`
+- Parameter Fuzzing - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php?FUZZ=key -fs xxx`
 
 # Dirb
 
