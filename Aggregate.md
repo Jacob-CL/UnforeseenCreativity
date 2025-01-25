@@ -69,6 +69,7 @@
 
 # JavaScript Deobfuscate
   - [Make it pretty](https://prettier.io/playground/) --> then [unpack](https://matthewfl.com/unPacker.html)
+  - Run Javacript console - https://jsconsole.com/
 
 
 
