@@ -53,6 +53,9 @@
   - Is there a WAF?
     - `wafw00f inlanefreight.com`
     - `nikto -h inlanefreight.com `
+  - Have you find anything by web crawling?
+    -  `python3 ReconSpider.py http://inlanefreight.com`
+  - Is there anything on [WebArchive / Waybackmachine?](https://web.archive.org)
 
 ### Have an SSH port?
  - What version of SSH is running?
@@ -63,7 +66,7 @@
    - `msfconsole search OpenSSH`
  - Can I enumerate valid usernames?
    - `hydra -L users.txt -p test123 ssh://<IP> -V`
- - Is there anything on [WebArchive / Waybackmachine?](https://web.archive.org)
+
 
 
   
