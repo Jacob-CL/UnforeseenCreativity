@@ -306,7 +306,11 @@ Active Directory Service Interfaces (ADSI) is a set of COM interfaces that can q
 
 # Telnet Commands
 
-# FFuf Commands
+# FFuf Commands (Use domain name)
+Useful for fuzzing directories, files + extensions, vhosts, PHP parameters and parameter values
+- `ffuf -u http://FUZZ.domain:41823 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt`
+- `ffuf -w /opt/useful/seclists/Discovery/Web-Content/web-extensions.txt:FUZZ -u http://domain:PORT/blog/indexFUZZ`
+- `ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://domain:PORT/blog/FUZZ.php` (If we know it runs PHP)
 
 # Dirb
 
