@@ -33,10 +33,12 @@ A directory for every (most) Cyber Security / PenTest topics
     - `nslookup <IP_ADDRESS>`
   - Can you see any outdated software or known vulnerabilities?
     - See above NMAP scan or `nmap --script vuln <IP>` | `nikto -h http://<IP>`
+  - Can you see any subdomains in the CT logs?
+    - `curl -s "https://crt.sh/?q=facebook.com&output=json" | jq -r '.[] | select(.name_value | contains("dev")) | .name_value' | sort -u`
   - Is there an SSL/TLS Certificate? Self-signed? And what domains does it cover?
     - `sslscan <IP>:443`
     - `openssl s_client -connect <IP>:443`
-  - What kind of authN is there? Can you brute force?
+   - What kind of authN is there? Can you brute force?
     - `medusa -h <IP> -U userlist.txt -P passlist.txt -M http`
     - `hydra -L users.txt -P passwords.txt <IP> http-post-form "/login:username=^USER^&password=^PASS^:Invalid"`
   - Are there API endpoints? Look for `/api`, `/graphql`, `/swagger`, `/openapi.json`
@@ -48,6 +50,9 @@ A directory for every (most) Cyber Security / PenTest topics
     - `gobuster vhost -u http://192.0.2.1 -w subdmain-hostnames.txt`
     - `gobuster vhost -u http://<target_IP_address> -w <wordlist_file> --append-domain`
     - `gobuster vhost -u http://inlanefreight.htb:81 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain`
+  - Is there a WAF?
+    - `wafw00f inlanefreight.com`
+    - `nikto -h inlanefreight.com `
 
 ### Have an SSH port?
  - What version of SSH is running?
