@@ -311,6 +311,7 @@ Useful for fuzzing directories, files + extensions, vhosts, PHP parameters and p
 - `ffuf -u http://FUZZ.domain:41823 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt`
 - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/web-extensions.txt:FUZZ -u http://domain:PORT/blog/indexFUZZ`
 - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://domain:PORT/blog/FUZZ.php` (If we know it runs PHP)
+- This one for all enumerating - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ -recursion -recursion-depth 1 -e .php -v`
 
 # Dirb
 
