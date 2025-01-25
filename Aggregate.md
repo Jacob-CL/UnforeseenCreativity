@@ -312,7 +312,10 @@ Useful for fuzzing directories, files + extensions, vhosts, PHP parameters and p
 - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://domain:PORT/blog/FUZZ.php` (If we know it runs PHP)
 - This one for all enumerating - `ffuf -w cleaned-wordlist.txt:FUZZ -u http://83.136.250.52:37289/FUZZ -recursion -recursion-depth 1 -e .php -mc 200,301,302,403 -t 50 -o results.txt -v`
 - This one for VHOST - `ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://academy.htb:PORT/ -H 'Host: FUZZ.academy.htb' -fs xxx`
-- Parameter Fuzzing - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php?FUZZ=key -fs xxx`
+- Parameter Fuzzing GET - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php?FUZZ=key -fs xxx`
+- Parameter Fuzzing POST (-d) - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'FUZZ=key' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx` - then try to use curl with any keys found
+- Value Fuzzing - `ffuf -w ids.txt:FUZZ -u http://admin.academy.htb:58083/admin/admin.php -d 'id=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -mc 200,302,403,500 -t 50 -v`
+`
 
 # Dirb
 
