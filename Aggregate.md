@@ -7,7 +7,9 @@ A directory for every (most) Cyber Security / PenTest topics
 
 **1. Recon Methodology:**
 `nmap -sC -sV -p- TARGETIP`
+
 `finalrecon --full example.com`
+
 `echo "10.129.227.248 s3.thetoppers.htb" | sudo tee -a /etc/hosts`
 
 ## Questions to ask
