@@ -8,6 +8,7 @@ A directory for every (most) Cyber Security / PenTest topics
 **1. Recon Methodology:**
 `nmap -sC -sV -p- TARGETIP`
 `finalrecon --full example.com`
+`echo "10.129.227.248 s3.thetoppers.htb" | sudo tee -a /etc/hosts`
 
 ## Questions to ask
 ### Have a web traffic port?
@@ -43,6 +44,7 @@ A directory for every (most) Cyber Security / PenTest topics
   - Is there the oppurtunity for SQL Injection, XXS, SSRF or command injection?
   - Can you check cookies and session management? Are they `HttpOnly`, `Secure`, `SameSite`?
   - Can you find a vhost? (Look at the `host` header - does the request hostname match the response hostname?)
+    - Don't forget to add to host file
     - `gobuster vhost -u http://192.0.2.1 -w subdmain-hostnames.txt`
     - `gobuster vhost -u http://<target_IP_address> -w <wordlist_file> --append-domain`
     - `gobuster vhost -u http://inlanefreight.htb:81 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain`
