@@ -6,6 +6,7 @@ A directory for every (most) Cyber Security / PenTest topics
  - [HackTheBox Academy](https://academy.hackthebox.com)
 
 **1. Recon Methodology:**
+
 `nmap -sC -sV -p- TARGETIP`
 
 `finalrecon --full example.com`
