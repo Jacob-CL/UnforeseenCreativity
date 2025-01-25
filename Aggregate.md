@@ -47,7 +47,6 @@
   - Can you check cookies and session management? Are they `HttpOnly`, `Secure`, `SameSite`?
   - Can you find a vhost? (Look at the `host` header - does the request hostname match the response hostname?)
     - Don't forget to add to host file + subdomains can be nested, make this iterative if you find a subdomain
-    - `gobuster vhost -u http://192.0.2.1 -w subdmain-hostnames.txt`
     - `gobuster vhost -u http://<target_IP_address> -w <wordlist_file> --append-domain`
     - `gobuster vhost -u http://inlanefreight.htb:81 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain`
   - Is there a WAF?
