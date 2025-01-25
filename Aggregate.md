@@ -315,7 +315,6 @@ Useful for fuzzing directories, files + extensions, vhosts, PHP parameters and p
 - Parameter Fuzzing GET - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php?FUZZ=key -fs xxx`
 - Parameter Fuzzing POST (-d) - `ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'FUZZ=key' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx` - then try to use curl with any keys found
 - Value Fuzzing - `ffuf -w ids.txt:FUZZ -u http://admin.academy.htb:58083/admin/admin.php -d 'id=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -mc 200,302,403,500 -t 50 -v`
-`
 
 # Dirb
 
