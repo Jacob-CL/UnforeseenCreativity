@@ -71,7 +71,15 @@
   - [Make it pretty](https://prettier.io/playground/) --> then [unpack](https://matthewfl.com/unPacker.html)
   - Run Javacript console - https://jsconsole.com/
 
-
+# WordPress Info
+- WordPress is written in PHP and usually runs on Apache with MySQL as the backend.
+- Webroot located at /var/www/html
+- Deactivating a vulnerable plugin does not improve the WordPress site's security. It is best practice to either remove or keep up-to-date any unused plugins.
+- A Content Management Application (CMA) - the interface used to add and manage content. A Content Delivery Application (CDA) - the backend that takes the input entered into the CMA and assembles the code into a working, visually appealing website.
+- Look for index.php, license.txt, wp-activate.php, /var/www/html/wp-includes, /var/www/html/wp-admin and /var/www/html/wp-content.
+- WP has Admin, Editor, Author, Contributor, Subscriber roles.
+- Look for `<meta name="generator" content="WordPress 5.3.3" />` (`curl -s -X GET http://blog.inlanefreight.com | grep '<meta name="generator"'`)
+- Look for particular plugins - `curl -I -X GET http://blog.inlanefreight.com/wp-content/plugins/someplugin` 404 if it doesnt exist
 
 
 
@@ -131,7 +139,7 @@
 ---
 
 ## [cURL](https://curl.se/docs/) Commands
-`cURL` is a command-line tool for transferring data using various protocols (HTTP, HTTPS, FTP, etc.). It is commonly used for making web requests, downloading/uploading files, testing APIs, and automating network tasks.
+`cURL` is a command-line tool for transferring data using various protocols (HTTP, HTTPS, FTP, etc.). It is commonly used for making web requests, downloading/uploading files, testing APIs, and automating network tasks. Use `| html2text` to make it more readable!
 
 ### **General & Help Flags**
 - cURL help menu - `curl -h` / `curl --help-all` 
