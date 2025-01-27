@@ -4,7 +4,7 @@
  - [OWASP](https://owasp.org/www-project-web-security-testing-guide/v42/)
  - [HackTheBox Academy](https://academy.hackthebox.com)
 
- - `nmap -sC -sV -p- TARGETIP`
+ - `nmap -sC -sV -p- -oN nmapscsn.txt TARGETIP`
  - `finalrecon --full example.com`
  - `sudo nano /etc/hosts` - Ctrl-X --> Y --> Enter
  - `echo "10.129.227.248 s3.thetoppers.htb" | sudo tee -a /etc/hosts`
