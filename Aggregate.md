@@ -139,7 +139,7 @@
 ---
 
 ## [cURL](https://curl.se/docs/) Commands
-`cURL` is a command-line tool for transferring data using various protocols (HTTP, HTTPS, FTP, etc.). It is commonly used for making web requests, downloading/uploading files, testing APIs, and automating network tasks. Use `| html2text` to make it more readable!
+`cURL` is a command-line tool for transferring data using various protocols (HTTP, HTTPS, FTP, etc.). It is commonly used for making web requests, downloading/uploading files, testing APIs, and automating network tasks. Use `| html2text` to make it more readable! for the love of god end URLs with a /
 
 ### **General & Help Flags**
 - cURL help menu - `curl -h` / `curl --help-all` 
