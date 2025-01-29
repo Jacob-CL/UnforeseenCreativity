@@ -357,5 +357,6 @@ Useful for fuzzing directories, files + extensions, vhosts, PHP parameters and p
 # smb commands
 
 # BloodHound
-To start Neo4j in console - `cd /usr/bin` --> `sudo ./neo4j console`
-Run Bloodhound GUI - `./BloodHound --no-sandbox` (saved on desktop) and auth with Neo4j creds - Neo4j 123
+- To start Neo4j in console - `cd /usr/bin` --> `sudo ./neo4j console`
+- Run Bloodhound GUI - `./BloodHound --no-sandbox` (saved on desktop) and auth with Neo4j creds - neo4j 123
+- Likes Java 11
