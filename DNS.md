@@ -25,3 +25,18 @@
 - Host transfer - `dig @ <ip> <domain> it AXFR`
 
 **Caution**: Some servers can detect and block excessive DNS queries. Use caution and respect rate limits. Always obtain permission before performing extensive DNS reconnaissance on a target.
+
+# [dnsenum](https://github.com/fwaeytens/dnsenum) commands
+Comprehensive DNS enumeration tool that supports dictionary and brute-force attacks for discovering subdomains. REMINDER: Subdomains are the XYZ.google.com and directories are the google.com/XYZ
+- `dnsenum --enum inlanefreight.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt`
+
+---
+
+# [dnsrecon](https://github.com/darkoperator/dnsrecon) commands
+Versatile tool that combines multiple DNS reconnaissance techniques and offers customisable output formats.
+
+# Remote Server Administration Tool (RSAT)
+Allows systems administrators to remotely manage Windows Server roles and features from a workstation running Windows 10, Windows 8.1, Windows 7, or Windows Vista. RSAT can only be installed on Professional or Enterprise editions of Windows. In an enterprise environment, RSAT can remotely manage Active Directory, DNS, and DHCP. RSAT also allows us to manage installed server roles and features, File Services, and Hyper-V. If installed the toolsd will be available under the Administrative Tools in the Control Panel
+- Check which, if any RSAT tools are install - `Get-WindowsCapability -Name RSAT* -Online | Select-Object -Property Name, State`
+- Install all available RSAT - `Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability –Online`
+- Or one at a time - `Add-WindowsCapability -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0  –Online`
