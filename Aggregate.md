@@ -3,6 +3,7 @@
  - [HackTricks Cloud](https://cloud.hacktricks.wiki/en/index.html)
  - [OWASP](https://owasp.org/www-project-web-security-testing-guide/v42/)
  - [HackTheBox Academy](https://academy.hackthebox.com)
+ - [OffSec Guide](https://www.offsec.com/app/uploads/2023/03/V1.Regular-Syllabus-PDF.pdf)
 
  - `nmap -sC -sV -p- -oN nmapscsn.txt TARGETIP`
  - `finalrecon --full example.com`
