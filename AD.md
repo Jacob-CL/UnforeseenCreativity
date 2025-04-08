@@ -79,3 +79,10 @@ Windows Management Instrumentation (WMI) can also be used to access and query ob
 Active Directory Service Interfaces (ADSI) is a set of COM interfaces that can query Active Directory. PowerShell again provides an easy way to interact with it.
 - `([adsisearcher]"(&(objectClass=Computer))").FindAll() | select Path`
 
+
+# BloodHound
+- To start Neo4j in console - `cd /usr/bin` --> `sudo ./neo4j console`
+- Run Bloodhound GUI - `./BloodHound --no-sandbox` (saved on desktop) and auth with Neo4j creds - neo4j 123
+- Likes Java 11
+
+
