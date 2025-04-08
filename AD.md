@@ -63,3 +63,19 @@ Remeber you may lack RDP perms to the box but still have perms to auth enumerate
 - `python3 windapsearch.py --dc-ip 10.129.1.207 -u inlanefreight\\james.cross --da` (`domain\\username`)
 - `python3 ldapsearch-ad.py -l 10.129.1.207 -d inlanefreight -u james.cross -p Summer2020 -t pass-pols`
 - Will reveal if accounts are prone to kerberoast: `python3 ldapsearch-ad.py -l 10.129.85.28 -d sequel -u rose -p KxEPkKe6R8su -t all`
+- 
+
+# DSQuery
+DS Tools is available by default on all modern Windows operating systems but required domain connectivity to perform enumeration activities.
+- `dsquery user "OU=Employees,DC=inlanefreight,DC=local" -name * -scope subtree -limit 0 | dsget user -samid -
+pwdneverexpires | findstr /V no`
+
+
+# WMI
+Windows Management Instrumentation (WMI) can also be used to access and query objects in Active Directory. Many scripting languages can interact with the WMI AD provider, but PowerShell makes this very easy.
+- `Get-WmiObject -Class win32_group -Filter "Domain='INLANEFREIGHT'" | Select Caption,Name`
+
+# ADSI
+Active Directory Service Interfaces (ADSI) is a set of COM interfaces that can query Active Directory. PowerShell again provides an easy way to interact with it.
+- `([adsisearcher]"(&(objectClass=Computer))").FindAll() | select Path`
+
