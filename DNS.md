@@ -40,3 +40,11 @@ Allows systems administrators to remotely manage Windows Server roles and featur
 - Check which, if any RSAT tools are install - `Get-WindowsCapability -Name RSAT* -Online | Select-Object -Property Name, State`
 - Install all available RSAT - `Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability –Online`
 - Or one at a time - `Add-WindowsCapability -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0  –Online`
+
+
+# [WHOIS](https://whoisrb.org/docs/) commands
+- The `whois` command queries **WHOIS databases** to retrieve information about domain registrations, IP addresses, and network ownership. 
+- Basic WHOIS Lookup `whois example.com` 
+- Use grep for specifics `whois google.com \| grep "Name Server"` 
+- Team Cymru malware hash lookup using whois: (Note: Output is timestamp of last seen and detection rate) `whois -h hash.cymru.com <SUSPICIOUS FILE HASH>` 
+
