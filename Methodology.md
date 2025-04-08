@@ -92,17 +92,6 @@
 
 ---
 
-## **7. Reporting & Documentation**
-### **Objective:** Document findings with detailed explanations and remediation recommendations.
-
-| Task | Recommended Tools |
-|------|------------------|
-| Generate a professional penetration test report | `Dradis`, `Serpico`, `LaTeX`, `Obsidian` |
-| Organize findings & screenshots | `CherryTree`, `KeepNote`, `burpsuite` |
-| Convert raw results into readable reports | `markdown`, `notion`, `Jupyter Notebooks` |
-
----
-
 ## **Additional Tools & Resources**
 ### **Essential CLI Utilities**
 - `jq` – JSON processor for handling API responses
@@ -117,6 +106,3 @@
 - [HackerOne Reports](https://hackerone.com/reports)
 - [Google Dorking Database](https://www.exploit-db.com/google-hacking-database)
 
----
-
-This methodology ensures **structured** web penetration testing, covering **reconnaissance, enumeration, exploitation, and reporting**. Let me know if you need modifications or additional details! 🚀
