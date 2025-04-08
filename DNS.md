@@ -46,5 +46,10 @@ Allows systems administrators to remotely manage Windows Server roles and featur
 - The `whois` command queries **WHOIS databases** to retrieve information about domain registrations, IP addresses, and network ownership. 
 - Basic WHOIS Lookup `whois example.com` 
 - Use grep for specifics `whois google.com \| grep "Name Server"` 
-- Team Cymru malware hash lookup using whois: (Note: Output is timestamp of last seen and detection rate) `whois -h hash.cymru.com <SUSPICIOUS FILE HASH>` 
+- Team Cymru malware hash lookup using whois: (Note: Output is timestamp of last seen and detection rate) `whois -h hash.cymru.com <SUSPICIOUS FILE HASH>`
+- 
+
+
+# Gobuster
+- Enumerate hidden directories - `gobuster dir -u http://backfire.htb:8000/ -w wordlist.txt`
 
