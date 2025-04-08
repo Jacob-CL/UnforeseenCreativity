@@ -1,5 +1,5 @@
 # [SQLmap](https://github.com/sqlmapproject/sqlmap/wiki/Usage)
-- Run it via taskbar or with 'sqlmap'
+- Run it via taskbar or with 'sqlmap' or `python sqlmap.py` in terminal
 - advanced help is `-hh`
 - The technique characters BEUSTQ refers to the following:
     - B: Boolean-based blind - most common (`AND 1=1`)
