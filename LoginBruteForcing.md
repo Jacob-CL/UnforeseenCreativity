@@ -71,5 +71,26 @@ Resulting in - `hydra -L top-usernames-shortlist.txt -P 2023-200_most_used_passw
   - OSINT will be a goldmine of information for CUPP
   - Spawn CUPP with `cupp -i` and follow the prompts
  
-Basic http:
+Basic http: `medusa -h 83.136.252.13 -n 38252 -U top-usernames-shortlist.txt -P 2023-200_most_used_passwords.txt -M http`
+
+| Option | Description | Example |
+|--------|-------------|---------|
+| `-h HOST` | Target host (IP or hostname) | `medusa -h 192.168.1.100 ...` |
+| `-H FILE` | File containing target hosts | `medusa -H hosts.txt ...` |
+| `-u USER` | Username to test | `medusa -u admin ...` |
+| `-U FILE` | File containing usernames | `medusa -U users.txt ...` |
+| `-p PASS` | Password to test | `medusa -p password123 ...` |
+| `-P FILE` | File containing passwords | `medusa -P passwords.txt ...` |
+| `-C FILE` | File containing username:password combinations | `medusa -C combos.txt ...` |
+| `-O FILE` | Write found logins to file | `medusa -O found_logins.txt ...` |
+| `-t THREADS` | Number of threads (default: 8) | `medusa -t 16 ...` |
+| `-T SECONDS` | Total timeout in seconds | `medusa -T 300 ...` |
+| `-f` | Stop after first successful login per host | `medusa -f ...` |
+| `-F` | Stop after first successful login (global) | `medusa -F ...` |
+| `-v` | Verbose mode | `medusa -v ...` |
+| `-d` | Display list of available modules | `medusa -d` |
+| `-n PORT` | Use non-default port | `medusa -n 2222 ...` |
+| `-s` | Enable SSL | `medusa -s ...` |
+| `-m` | Module-specific parameters | `medusa -m DIR:/admin ...` |
+
 
