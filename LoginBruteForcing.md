@@ -48,6 +48,10 @@ Therefore, the `params` string would be:
  
 Resulting in - `hydra -L top-usernames-shortlist.txt -P 2023-200_most_used_passwords.txt -f IP -s 5000 http-post-form "/:username=^USER^&password=^PASS^:F=Invalid credentials"`
 
+Flow -
+- brute force gttp
+- `hydra -L username-anarchy/TM.txt -P passwords.txt -s 21 -V localhost ftp`
+
 # [Medusa]([url](https://docs.medusajs.com/learn/fundamentals/modules))
 - `man medusa`
 - Modules (-M) are case sensitive, both the flag (M) and the modules you call. `HTTP` will fail but `http` wont etc.
