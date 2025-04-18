@@ -47,7 +47,7 @@ Therefore, the `params` string would be:
  
 Resulting in - `hydra -L top-usernames-shortlist.txt -P 2023-200_most_used_passwords.txt -f IP -s 5000 http-post-form "/:username=^USER^&password=^PASS^:F=Invalid credentials"`
 
-# Medusa
+# [Medusa]([url](https://docs.medusajs.com/learn/fundamentals/modules))
 - `medusa [target_options] [credential_options] -M module [module_options]`
 - Useful for FTP, HTTP, IMAP, MYSQL, POP3, RDP, SSHV2, SUBVERSION(SVN), TELNET, VNX, Web Form.
 - SSH Server: `medusa -h 192.168.0.100 -U usernames.txt -P passwords.txt -M ssh`
