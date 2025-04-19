@@ -17,3 +17,7 @@ Just be mindful that operators may not work on specific set ups:
 
 - Reminder: Nothing in the network tab of dev tools means the filtering is happening on the front-end. It is very common for developers only to perform input validation on the front-end while not validating or sanitizing the input on the back-end.
 
+- If there's front end filtering, intercept a successful POST/GET, and then modify that successful request in BURP.
+- If the app says something like "Invalid input" then maybe theres some blacklisted characters - first identify the character and then try encoding or double encoding
+- new-line character is usually not blacklisted, as it may be needed in the payload itself.
+
