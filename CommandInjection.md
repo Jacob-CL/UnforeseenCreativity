@@ -15,3 +15,5 @@ Just be mindful that operators may not work on specific set ups:
 - In general, for basic command injection, all of these operators can be used for command injections regardless of the web application language, framework, or back-end server. So, if we are injecting in a `PHP` web application running on a Linux server, or a `.Net` web application running on a `Windows` back-end server, or a `NodeJS` web application running on a macOS back-end server, our injections should work regardless.
 - The only exception may be the semi-colon `;`, which will not work if the command was being executed with `Windows Command Line (CMD)`, but would still work if it was being executed with Windows PowerShell.
 
+- Reminder: Nothing in the network tab of dev tools means the filtering is happening on the front-end. It is very common for developers only to perform input validation on the front-end while not validating or sanitizing the input on the back-end.
+
