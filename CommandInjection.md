@@ -20,6 +20,8 @@ Just be mindful that operators may not work on specific set ups:
 - If there's front end filtering, intercept a successful POST/GET, and then modify that successful request in BURP.
 - If the app says something like "Invalid input" then maybe theres some blacklisted characters - first identify the character and then try encoding or double encoding
 - new-line character is usually not blacklisted, as it may be needed in the payload itself. (`\n` | `%0a`)
+
+## Bypassing white spaces
 - If spaces are blacklisted, try using tabs (%09) instead of spaces is a technique that may work, as both Linux and Windows accept commands with tabs between arguments, and they are executed the same
 - Using the `($IFS)` Linux Environment Variable may also work since its default value is a space and a tab, which would work between command arguments. So, if we use ${IFS} where the spaces should be, the variable should be automatically replaced with a space, and our command should work. e.g `127.0.0.1%0a${IFS}`
 - There are many other methods we can utilize to bypass space filters. For example, we can use the Bash Brace Expansion feature, which automatically adds spaces between arguments wrapped between braces, as follows: `Lumington@htb[/htb]$ {ls,-la}` See more here [PayloadAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection#bypass-without-space)
