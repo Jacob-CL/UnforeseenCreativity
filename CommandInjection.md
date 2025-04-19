@@ -9,3 +9,9 @@ To inject an additional command to the intended one, we may use any of the follo
 | OR | `\|\|` | `%7c%7c` | Second (only if first fails) |
 | Sub-Shell | `` ` ` `` | `%60%60` | Both (Linux-only) |
 | Sub-Shell | `$()` | `%24%28%29` | Both (Linux-only) |
+
+Just be mindful that operators may not work on specific set ups:
+- In addition to the above, there are a few unix-only operators, that would work on Linux and `macOS`, but would not work on `Windows`, such as wrapping our injected command with double backticks (``) or with a sub-shell operator (`$()`).
+- In general, for basic command injection, all of these operators can be used for command injections regardless of the web application language, framework, or back-end server. So, if we are injecting in a `PHP` web application running on a Linux server, or a `.Net` web application running on a `Windows` back-end server, or a `NodeJS` web application running on a macOS back-end server, our injections should work regardless.
+- The only exception may be the semi-colon `;`, which will not work if the command was being executed with `Windows Command Line (CMD)`, but would still work if it was being executed with Windows PowerShell.
+
