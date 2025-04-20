@@ -34,10 +34,55 @@ To bypass these protections, we can either modify the upload request to the back
 - Keep in mind you might come across whitelisting or blacklisting
 - Also keep in mind the filtering could be listening for file type or file extension. The weakest form of validation amongst these is testing the file extension against a blacklist of extension to determine whether the upload request should be blocked
 - Reminder: Case manipulation (php == PhP etc)
-- 
+- A whitelist is generally more secure than a blacklist.
+- Is the whitelist using regex? if it's matching on file extension just double ext image.jpeg.exe
 ## Fuzzing Web Extensions
 - [SecList Web Extentions](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/web-extensions.txt)
 - Use 'Intruder' in BurpSuite to fuzz available extensions.
 - Note: If using a payload, make sure you untick 'URL-encode these characters' since you don't want the full stop encoded.
 - Then look at the 'Length' of each response to see which are allowed.
 - Not all extensions will work with all web server configurations, so we may need to try several extensions to get one that successfully executes PHP code.
+- Many different file extensions will run php e.g .phar worked for the exercise.
+
+## Character Injection
+The following are some of the characters we may try injecting:
+```
+    %20
+    %0a
+    %00
+    %0d0a
+    /
+    .\
+    .
+    …
+    :
+```
+Each character has a specific use case that may trick the web application to misinterpret the file extension. For example, (shell.php%00.jpg) works with PHP servers with version 5.X or earlier, as it causes the PHP web server to end the file name after the (%00), and store it as (shell.php), while still passing the whitelist. The same may be used with web applications hosted on a Windows server by injecting a colon (:) before the allowed file extension (e.g. shell.aspx:.jpg), which should also write the file as (shell.aspx). Similarly, each of the other characters has a use case that may allow us to upload a PHP script while bypassing the type validation test.
+
+- 
+### Type Filters
+There are two common methods for validating the file content: Content-Type Header or File Content.
+Our browsers automatically set the Content-Type header when selecting a file through the file selector dialog, usually derived from the file extension. However, since our browsers set this, this operation is a client-side operation, and we can manipulate it to change the perceived file type and potentially bypass the type filter.
+
+- [Seclists]((https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/web-all-content-types.txt)
+```
+Lumington@htb[/htb]$ wget https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt
+Lumington@htb[/htb]$ cat web-all-content-types.txt | grep 'image/' > image-content-types.txt
+```
+
+A file upload HTTP request has two Content-Type headers, one for the attached file (at the bottom), and one for the full request (at the top). We usually need to modify the file's Content-Type header, but in some cases the request will only contain the main Content-Type header (e.g. if the uploaded content was sent as POST data), in which case we will need to modify the main Content-Type header.
+
+- The second and more common type of file content validation is testing the uploaded file's `MIME-Type`. `Multipurpose Internet Mail Extensions (MIME)` is an internet standard that determines the type of a file through its general format and bytes structure.
+- `file` command uses this e.g
+```
+Lumington@htb[/htb]$ echo "this is a text file" > text.jpg 
+Lumington@htb[/htb]$ file text.jpg 
+text.jpg: ASCII text
+```
+However, 
+```
+Lumington@htb[/htb]$ echo "GIF8" > text.jpg 
+Lumington@htb[/htb]$file text.jpg
+text.jpg: GIF image data
+```
+
