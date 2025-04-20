@@ -34,3 +34,10 @@ To bypass these protections, we can either modify the upload request to the back
 - Keep in mind you might come across whitelisting or blacklisting
 - Also keep in mind the filtering could be listening for file type or file extension. The weakest form of validation amongst these is testing the file extension against a blacklist of extension to determine whether the upload request should be blocked
 - Reminder: Case manipulation (php == PhP etc)
+- 
+## Fuzzing Web Extensions
+- [SecList Web Extentions](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/web-extensions.txt)
+- Use 'Intruder' in BurpSuite to fuzz available extensions.
+- Note: If using a payload, make sure you untick 'URL-encode these characters' since you don't want the full stop encoded.
+- Then look at the 'Length' of each response to see which are allowed.
+- Not all extensions will work with all web server configurations, so we may need to try several extensions to get one that successfully executes PHP code.
