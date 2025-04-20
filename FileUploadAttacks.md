@@ -29,4 +29,8 @@ Any code that runs on the client-side is under our control. While the web server
 To bypass these protections, we can either modify the upload request to the back-end server, or we can manipulate the front-end code to disable these type validations.
 
 - We may also modify the Content-Type of the uploaded file, though this should not play an important role at this stage, so we'll keep it unmodified.
-- Reminder: if you upload with nothing in the network tab then it's all happening front end
+- Reminder: if you upload with nothing in the network tab then it's all happening front end. All front end code you can just remove lol
+- In DevTools, go to console and search for functions you see in the front end HTML/Javascript and remove them to remove the front end filtering. Hope that it doesn't break the 'upload' functionality of the site and just removes the filtering element.
+- Keep in mind you might come across whitelisting or blacklisting
+- Also keep in mind the filtering could be listening for file type or file extension. The weakest form of validation amongst these is testing the file extension against a blacklist of extension to determine whether the upload request should be blocked
+- Reminder: Case manipulation (php == PhP etc)
