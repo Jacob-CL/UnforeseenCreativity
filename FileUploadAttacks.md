@@ -29,3 +29,4 @@ Any code that runs on the client-side is under our control. While the web server
 To bypass these protections, we can either modify the upload request to the back-end server, or we can manipulate the front-end code to disable these type validations.
 
 - We may also modify the Content-Type of the uploaded file, though this should not play an important role at this stage, so we'll keep it unmodified.
+- Reminder: if you upload with nothing in the network tab then it's all happening front end
