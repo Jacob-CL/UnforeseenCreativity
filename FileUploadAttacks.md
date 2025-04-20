@@ -85,4 +85,4 @@ Lumington@htb[/htb]$ echo "GIF8" > text.jpg
 Lumington@htb[/htb]$file text.jpg
 text.jpg: GIF image data
 ```
-
+- So god dam important to read the source code - the date was prepended to the filename which is why i couldnt find my uploaded file :(
