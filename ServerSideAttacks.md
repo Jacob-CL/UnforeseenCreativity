@@ -49,6 +49,7 @@ To enable the successful exploitation of an SSTI vulnerability, we first need to
 - If the mathematical functoin is not executed, then that's a fail and you should follow the red arrow.
 - we can obtain the web application's configuration using the following SSTI payload: `{{ config.items() }}`
 - Code to read the flag: `{{ self.__init__.__globals__.__builtins__.open("/etc/passwd").read() }}`
+- Twig is for Python and Kinja is for PHP
 
 
 
