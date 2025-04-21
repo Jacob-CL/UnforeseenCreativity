@@ -48,8 +48,17 @@ To enable the successful exploitation of an SSTI vulnerability, we first need to
 - The result will enable us to deduce the template engine used by the web application. In Jinja, the result will be 7777777, while in Twig, the result will be 49.
 - If the mathematical functoin is not executed, then that's a fail and you should follow the red arrow.
 - we can obtain the web application's configuration using the following SSTI payload: `{{ config.items() }}`
-- Code to read the flag: `{{ self.__init__.__globals__.__builtins__.open("/etc/passwd").read() }}`
+- Python code to read the flag: `{{ self.__init__.__globals__.__builtins__.open("/etc/passwd").read() }}`
 - Twig is for Python and Kinja is for PHP
+- PHP code to read flag: `{{ ['cat /flag.txt'] | filter('system') }}`
+
+## SSI Injection 
+Server-Side Includes (SSI) is a technology web applications use to create dynamic content on HTML pages. SSI is supported by many popular web servers such as Apache and IIS. The use of SSI can often be inferred from the file extension. Typical file extensions include .shtml, .shtm, and .stm. However, web servers can be configured to support SSI directives in arbitrary file extensions. As such, we cannot conclusively conclude whether SSI is used only from the file extension.
+
+## XSLT Injection
+eXtensible Stylesheet Language Transformation (XSLT) is a language enabling the transformation of XML documents. For instance, it can select specific nodes from an XML document and change the XML structure.
+- PHP `<xsl:value-of select="php:function('file_get_contents','/flag.txt')" />`
+
 
 
 
