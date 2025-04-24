@@ -1,6 +1,21 @@
 # Broken Authentication
 - - The most widespread authentication method in web applications is login forms, where users enter their username and password to prove their identity.
-- - [Enumerating users with SecLists](https://github.com/danielmiessler/SecLists/tree/master/Usernames)
-  - An example of a side channel is the response timing.
-  - When enumerating users, youre probably doing it against index.php
-  - Another reminder to run everything twice, and to use different tools. They aren't always reliable
+-[Enumerating users with SecLists](https://github.com/danielmiessler/SecLists/tree/master/Usernames)
+- An example of a side channel is the response timing.
+- When enumerating users, youre probably doing it against index.php
+- Another reminder to run everything twice, and to use different tools. They aren't always reliable
+- rockyou.txt is 14mil passwords so use grep to create a .txt off rockyou.txt: `grep '[[:upper:]]' /opt/useful/seclists/Passwords/Leaked-Databases/rockyou.txt | grep '[[:lower:]]' | grep '[[:digit:]]' | grep -E '.{10}' > custom_wordlist.txt` --> `wc -l custom_wordlist.txt`
+- Enumerate with usernames with something like: `ffuf -w ./custom_wordlist.txt -u http://94.237.52.18:57531/index.php -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "username=admin&password=FUZZ" -fr "Invalid username"`
+- Can expliot password reset tokens by requesting a password reset token yourself. If it's 4 digits (e.g `http://weak_reset.htb/reset_password.php?token=7351` then we know then it's likely the token is going to likely be between 0 and 10,000 (4 digits) which we can bruteforce.
+- A txt file for this: `seq -w 0 9999 > tokens.txt` The -w flag pads all numbers to the same length by prepending zeroes, which we can verify by looking at the first few lines of the output file:`head tokens.txt`
+- Assuming that there are users currently in the process of resetting their passwords, we can try to brute-force all active reset tokens.
+- Command in ffuf: `ffuf -w ./tokens.txt -u http://weak_reset.htb/reset_password.php?token=FUZZ -fr "The provided token is invalid"`
+- One of the most common 2FA implementations relies on the user's password and a time-based one-time password (TOTP) provided to the user's smartphone by an authenticator app or via SMS. These TOTPs typically consist only of digits, making them potentially guessable if the length is insufficient and the web application does not implement measures against successive submission of incorrect TOTPs
+- ffuf time-based one time password (TOTP ): `ffuf -w ./tokens.txt -u http://bf_2fa.htb/2fa.php -X POST -H "Content-Type: application/x-www-form-urlencoded" -b "PHPSESSID=fpfcm5b8dh1ibfa7idg0he7l93" -d "otp=FUZZ" -fr "Invalid 2FA Code"`
+- ^^ Grab the PHPSESSID from logging in as the user (assuming you have those creds). And you will get many hits if you let it run, that is because our session successfully passed the 2FA check after we had supplied the correct TOTP. Since 6513 was the first hit, we can assume this was the correct TOTP. Afterward, our session is marked as fully authenticated, so all requests using our session cookie are redirected to /admin.php. To access the protected page, we can simply access the endpoint /admin.php in the web browser and see that we successfully passed 2FA.
+- In terms of rate limiting - if there are middleboxes such as reverse proxies, load balancers, or web caches, a request's source IP address will belong to the middlebox, not the attacker. Thus, some rate limits rely on HTTP headers such as X-Forwarded-For to obtain the actual source IP address. However, this causes an issue as an attacker can **set arbitrary HTTP headers in request**, bypassing the rate limit entirely. This enables an attacker to conduct a brute-force attack by randomizing the X-Forwarded-For header in each HTTP request to avoid the rate limit.
+- In terms of CAPTCHA, it is essential not to reveal a CAPTCHA's solution in the response. (Check page source for CAPTCHA string)
+- However, even if a web application utilizes rate limiting and CAPTCHAs, business logic bugs within the password reset functionality can allow taking over other users' accounts. i.e brute force 'City you were born in' question
+- Reminder: When wget returns the HTML of a page instead of the file you're trying to download, it's usually because you're using the wrong URL.
+- [Authentication Bypass via Direct Access]([url](https://academy.hackthebox.com/module/80/section/780))
+- 
